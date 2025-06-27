@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": "net8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    "net8.0": {
+      "SnakeDLL/1.0.0": {
+        "runtime": {
+          "SnakeDLL.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SnakeDLL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

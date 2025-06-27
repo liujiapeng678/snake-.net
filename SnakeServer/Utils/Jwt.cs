@@ -1,8 +1,8 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿using Microsoft.IdentityModel.Tokens;
+using Org.BouncyCastle.Asn1.Ocsp;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.IdentityModel.Tokens;
-
 
 namespace SnakeServer.Utils
 {
@@ -27,6 +27,8 @@ namespace SnakeServer.Utils
 
             // 4. 返回字符串形式的Token
             return new JwtSecurityTokenHandler().WriteToken(token);
+            //string token = JwtTokenGenerator.CreateToken(username);
+            //return token;
         }
     }
 }

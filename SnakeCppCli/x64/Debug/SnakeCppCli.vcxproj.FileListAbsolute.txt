@@ -1,0 +1,5 @@
+D:\Snake\SnakeGame\x64\Debug\Ijwhost.dll
+D:\Snake\SnakeGame\x64\Debug\SnakeCppCli.deps.json
+D:\Snake\SnakeGame\x64\Debug\SnakeCppCli.runtimeconfig.json
+D:\Snake\SnakeCppCli\x64\Debug\SnakeCppCli.sourcelink.json
+D:\Snake\SnakeCppCli\x64\Debug\SnakeCppCli.genruntimeconfig.cache

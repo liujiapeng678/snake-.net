@@ -10,6 +10,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using static SnakeServer.Controllers.GameController;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using SnakeCppCli;
 
 namespace SnakeServer.Models
 {
@@ -154,13 +155,15 @@ namespace SnakeServer.Models
 
         public void CreateGameMap()
         {
-            for (int i = 0; i < 1000; i++)
-            {
-                if (CreateWalls())
-                {
-                    break;
-                }
-            }
+            //for (int i = 0; i < 1000; i++)
+            //{
+            //    if (CreateWalls())
+            //    {
+            //        break;
+            //    }
+            //}
+            var generator = new MapGenerator(13, 14, 20);
+            GameMap = generator.CreateGameMap(); // 直接得到 int[,]
         }
 
         private string GetInput(Player player)

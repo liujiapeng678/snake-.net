@@ -1,12 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>71e54eb6-fb08-41f4-a705-2dff9d23e4a2</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +15,20 @@
     <PackageReference Include="MySql.Data" Version="9.3.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.12.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SnakeCppCli\SnakeCppCli.vcxproj" />
+    <ProjectReference Include="..\SnakeDLL\SnakeDLL.vcxproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SnakeCppCli">
+      <HintPath>..\SnakeGame\x64\Debug\SnakeCppCli.dll</HintPath>
+    </Reference>
+    <Reference Include="SnakeDLL">
+      <HintPath>..\SnakeGame\x64\Debug\SnakeDLL.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

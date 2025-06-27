@@ -29,3 +29,4 @@ D:\Snake\SnakeMatchingSystem\obj\Debug\net8.0\refint\SnakeMatchingSystem.dll
 D:\Snake\SnakeMatchingSystem\obj\Debug\net8.0\SnakeMatchingSystem.pdb
 D:\Snake\SnakeMatchingSystem\obj\Debug\net8.0\SnakeMatchingSystem.genruntimeconfig.cache
 D:\Snake\SnakeMatchingSystem\obj\Debug\net8.0\ref\SnakeMatchingSystem.dll
+D:\Snake\SnakeMatchingSystem\obj\Debug\net8.0\SnakeMatchingSystem.sourcelink.json

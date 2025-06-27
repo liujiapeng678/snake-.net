@@ -49,9 +49,15 @@ bool MapGenerator::CreateWalls()
 
     // ±ﬂΩÁ«Ω
     for (int r = 0; r < rows; r++)
-        gameMap[r, 0] = gameMap[r, cols - 1] = 1;
+    {
+        gameMap[r, 0] = 1;
+        gameMap[r, cols - 1] = 1;
+    }
     for (int c = 0; c < cols; c++)
-        gameMap[0, c] = gameMap[rows - 1, c] = 1;
+    {
+        gameMap[0, c] = 1;
+        gameMap[rows - 1, c] = 1;
+    }
 
     // ÀÊª˙ƒ⁄«Ω
     std::random_device rd;
@@ -71,7 +77,8 @@ bool MapGenerator::CreateWalls()
             if ((r == rows - 2 && c == 1) || (r == 1 && c == cols - 2))
                 continue;
 
-            gameMap[r, c] = gameMap[rows - 1 - r, cols - 1 - c] = 1;
+            gameMap[r, c] = 1;
+            gameMap[rows - 1 - r, cols - 1 - c] = 1;
             break;
         }
     }

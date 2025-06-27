@@ -1,0 +1,4 @@
+﻿  SnakeCppCli.cpp
+  .NETCoreApp,Version=v8.0.AssemblyAttributes.cpp
+  AssemblyInfo.obj : 遇到了 MSIL 模块；对 MSIL 禁用了增量链接；正在执行完全链接
+  SnakeCppCli.vcxproj -> D:\Snake\SnakeGame\x64\Debug\SnakeCppCli.dll

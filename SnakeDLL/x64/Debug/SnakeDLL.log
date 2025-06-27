@@ -1,0 +1,21 @@
+﻿  pch.cpp
+  dllmain.cpp
+  JwtTokenDll.cpp
+D:\Snake\SnakeDLL\JwtTokenDll.cpp(23,16): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/JwtTokenDll.cpp”)
+  
+D:\Snake\SnakeDLL\JwtTokenDll.cpp(110,24): warning C4267: “=”: 从“size_t”转换到“DWORD”，可能丢失数据
+  (编译源文件“/JwtTokenDll.cpp”)
+  
+D:\Snake\SnakeDLL\JwtTokenDll.cpp(131,67): warning C4267: “参数”: 从“size_t”转换到“DWORD”，可能丢失数据
+  (编译源文件“/JwtTokenDll.cpp”)
+  
+D:\Snake\SnakeDLL\JwtTokenDll.cpp(225,29): warning C4101: “e”: 未引用的局部变量
+  (编译源文件“/JwtTokenDll.cpp”)
+  
+  正在生成代码...
+D:\Snake\SnakeDLL\dllmain.cpp(1,1): warning C4747: 调用托管“DllMain”: 托管代码可能未运行在加载程序锁下，包括 DLL 入口点和从 DLL 入口点访问到的调用
+  .NETCoreApp,Version=v8.0.AssemblyAttributes.cpp
+  dllmain.obj : 遇到了 MSIL 模块；对 MSIL 禁用了增量链接；正在执行完全链接
+    正在创建库 D:\Snake\SnakeGame\x64\Debug\SnakeDLL.lib 和对象 D:\Snake\SnakeGame\x64\Debug\SnakeDLL.exp
+  SnakeDLL.vcxproj -> D:\Snake\SnakeGame\x64\Debug\SnakeDLL.dll

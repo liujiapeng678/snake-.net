@@ -1,12 +1,146 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Snake\\SnakeGame\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3636D5CB-39D8-ABAD-542A-EEB67D3CE04F}|..\\SnakeServer\\SnakeServer.csproj|d:\\snake\\snakeserver\\utils\\jwt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3636D5CB-39D8-ABAD-542A-EEB67D3CE04F}|..\\SnakeServer\\SnakeServer.csproj|d:\\snake\\snakeserver\\utils\\nativemethods.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63832BF8-2E98-452C-8ACE-EAC04E18463D}|..\\SnakeDLL\\SnakeDLL.vcxproj|D:\\Snake\\SnakeDLL\\JwtTokenDll.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63832BF8-2E98-452C-8ACE-EAC04E18463D}|..\\SnakeDLL\\SnakeDLL.vcxproj|D:\\Snake\\SnakeDLL\\JwtTokenDll.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3636D5CB-39D8-ABAD-542A-EEB67D3CE04F}|..\\SnakeServer\\SnakeServer.csproj|d:\\snake\\snakeserver\\utils\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3636D5CB-39D8-ABAD-542A-EEB67D3CE04F}|..\\SnakeServer\\SnakeServer.csproj|d:\\snake\\snakeserver\\utils\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9FFCA0A-04E9-161E-7FB3-D9B38D718AD8}|..\\SnakeCppCli\\SnakeCppCli.vcxproj|D:\\Snake\\SnakeCppCli\\SnakeCppCli.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9FFCA0A-04E9-161E-7FB3-D9B38D718AD8}|..\\SnakeCppCli\\SnakeCppCli.vcxproj|D:\\Snake\\SnakeCppCli\\SnakeCppCli.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "NativeMethods.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeServer\\Utils\\NativeMethods.cs",
+              "RelativeDocumentMoniker": "..\\SnakeServer\\Utils\\NativeMethods.cs",
+              "ToolTip": "D:\\Snake\\SnakeServer\\Utils\\NativeMethods.cs",
+              "RelativeToolTip": "..\\SnakeServer\\Utils\\NativeMethods.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAA5wBQAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T13:42:44.209Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "JwtTokenDll.h",
+              "DocumentMoniker": "D:\\Snake\\SnakeDLL\\JwtTokenDll.h",
+              "RelativeDocumentMoniker": "..\\SnakeDLL\\JwtTokenDll.h",
+              "ToolTip": "D:\\Snake\\SnakeDLL\\JwtTokenDll.h",
+              "RelativeToolTip": "..\\SnakeDLL\\JwtTokenDll.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-06-27T13:27:38.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "JwtTokenDll.cpp",
+              "DocumentMoniker": "D:\\Snake\\SnakeDLL\\JwtTokenDll.cpp",
+              "RelativeDocumentMoniker": "..\\SnakeDLL\\JwtTokenDll.cpp",
+              "ToolTip": "D:\\Snake\\SnakeDLL\\JwtTokenDll.cpp",
+              "RelativeToolTip": "..\\SnakeDLL\\JwtTokenDll.cpp",
+              "ViewState": "AgIAANkAAAAAAAAAAAAAABcBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-27T13:23:30.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Player.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeServer\\Utils\\Player.cs",
+              "RelativeDocumentMoniker": "..\\SnakeServer\\Utils\\Player.cs",
+              "ToolTip": "D:\\Snake\\SnakeServer\\Utils\\Player.cs",
+              "RelativeToolTip": "..\\SnakeServer\\Utils\\Player.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T13:08:33.349Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Jwt.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeServer\\Utils\\Jwt.cs",
+              "RelativeDocumentMoniker": "..\\SnakeServer\\Utils\\Jwt.cs",
+              "ToolTip": "D:\\Snake\\SnakeServer\\Utils\\Jwt.cs",
+              "RelativeToolTip": "..\\SnakeServer\\Utils\\Jwt.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T13:08:30.694Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SnakeCppCli.cpp",
+              "DocumentMoniker": "D:\\Snake\\SnakeCppCli\\SnakeCppCli.cpp",
+              "RelativeDocumentMoniker": "..\\SnakeCppCli\\SnakeCppCli.cpp",
+              "ToolTip": "D:\\Snake\\SnakeCppCli\\SnakeCppCli.cpp",
+              "RelativeToolTip": "..\\SnakeCppCli\\SnakeCppCli.cpp",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAAGAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-27T12:50:02.539Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SnakeCppCli.h",
+              "DocumentMoniker": "D:\\Snake\\SnakeCppCli\\SnakeCppCli.h",
+              "RelativeDocumentMoniker": "..\\SnakeCppCli\\SnakeCppCli.h",
+              "ToolTip": "D:\\Snake\\SnakeCppCli\\SnakeCppCli.h",
+              "RelativeToolTip": "..\\SnakeCppCli\\SnakeCppCli.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-06-27T12:49:54.608Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Game.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeServer\\Utils\\Game.cs",
+              "RelativeDocumentMoniker": "..\\SnakeServer\\Utils\\Game.cs",
+              "ToolTip": "D:\\Snake\\SnakeServer\\Utils\\Game.cs",
+              "RelativeToolTip": "..\\SnakeServer\\Utils\\Game.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T12:46:30.688Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
