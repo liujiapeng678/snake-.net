@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\Snake\\SnakeRunningSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|d:\\snake\\snakerunningsystem\\utils\\botpool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|solutionrelative:utils\\botpool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|d:\\snake\\snakerunningsystem\\utils\\consumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|solutionrelative:utils\\consumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|d:\\snake\\snakerunningsystem\\utils\\botpool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|solutionrelative:utils\\botpool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|d:\\snake\\snakerunningsystem\\controllers\\botcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
@@ -42,8 +42,7 @@
               "RelativeToolTip": "Utils\\Bot.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-27T06:32:46.592Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-27T06:32:46.592Z"
             },
             {
               "$type": "Document",
@@ -55,8 +54,7 @@
               "RelativeToolTip": "Controllers\\BotController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-27T06:25:56.88Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-27T06:25:56.88Z"
             },
             {
               "$type": "Document",
@@ -72,29 +70,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Consumer.cs",
               "DocumentMoniker": "D:\\Snake\\SnakeRunningSystem\\Utils\\Consumer.cs",
               "RelativeDocumentMoniker": "Utils\\Consumer.cs",
               "ToolTip": "D:\\Snake\\SnakeRunningSystem\\Utils\\Consumer.cs",
               "RelativeToolTip": "Utils\\Consumer.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAgwEwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAQwCoAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-26T03:58:32.179Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "BotPool.cs",
               "DocumentMoniker": "D:\\Snake\\SnakeRunningSystem\\Utils\\BotPool.cs",
               "RelativeDocumentMoniker": "Utils\\BotPool.cs",
               "ToolTip": "D:\\Snake\\SnakeRunningSystem\\Utils\\BotPool.cs",
               "RelativeToolTip": "Utils\\BotPool.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAQwDAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwDAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-22T06:53:28.884Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-22T06:53:28.884Z"
             }
           ]
         }

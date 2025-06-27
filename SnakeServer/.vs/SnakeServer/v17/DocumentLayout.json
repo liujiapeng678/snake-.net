@@ -94,8 +94,7 @@
               "RelativeToolTip": "Controllers\\RecordController.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAA3wBUAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-27T03:51:53.459Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-27T03:51:53.459Z"
             },
             {
               "$type": "Document",
@@ -119,8 +118,7 @@
               "RelativeToolTip": "Controllers\\GameController.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAA3wDkAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-23T13:53:13.055Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-23T13:53:13.055Z"
             },
             {
               "$type": "Document",
@@ -144,8 +142,7 @@
               "RelativeToolTip": "Middleware\\WebSocketMiddleware.cs",
               "ViewState": "AgIAAIUAAAAAAAAAAAAkwCUBAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-15T08:29:25.177Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-15T08:29:25.177Z"
             },
             {
               "$type": "Document",
@@ -155,7 +152,7 @@
               "RelativeDocumentMoniker": "Utils\\Game.cs",
               "ToolTip": "D:\\Snake\\SnakeServer\\Utils\\Game.cs",
               "RelativeToolTip": "Utils\\Game.cs",
-              "ViewState": "AgIAAC4BAAAAAAAAAAAAwHQBAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAswJoAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-22T08:09:55.924Z",
               "EditorCaption": ""

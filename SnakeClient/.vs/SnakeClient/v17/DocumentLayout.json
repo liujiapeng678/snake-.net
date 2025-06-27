@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\Snake\\SnakeClient\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B73670FE-5EFB-478A-8D19-63C8C05FA856}|SnakeClient.csproj|d:\\snake\\snakeclient\\gameclass\\snake.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B73670FE-5EFB-478A-8D19-63C8C05FA856}|SnakeClient.csproj|solutionrelative:gameclass\\snake.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B73670FE-5EFB-478A-8D19-63C8C05FA856}|SnakeClient.csproj|d:\\snake\\snakeclient\\layout\\matchground.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B73670FE-5EFB-478A-8D19-63C8C05FA856}|SnakeClient.csproj|solutionrelative:layout\\matchground.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -13,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B73670FE-5EFB-478A-8D19-63C8C05FA856}|SnakeClient.csproj|d:\\snake\\snakeclient\\layout\\resultboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B73670FE-5EFB-478A-8D19-63C8C05FA856}|SnakeClient.csproj|solutionrelative:layout\\resultboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B73670FE-5EFB-478A-8D19-63C8C05FA856}|SnakeClient.csproj|d:\\snake\\snakeclient\\gameclass\\snake.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B73670FE-5EFB-478A-8D19-63C8C05FA856}|SnakeClient.csproj|solutionrelative:gameclass\\snake.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B73670FE-5EFB-478A-8D19-63C8C05FA856}|SnakeClient.csproj|d:\\snake\\snakeclient\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -102,7 +102,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
@@ -119,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Home.razor",
               "DocumentMoniker": "D:\\Snake\\SnakeClient\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "Pages\\Home.razor",
@@ -127,12 +127,11 @@
               "RelativeToolTip": "Pages\\Home.razor",
               "ViewState": "AgIAAB4AAAAAAAAAAAAAADMAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-16T14:32:47.664Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-16T14:32:47.664Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MatchGround.razor",
               "DocumentMoniker": "D:\\Snake\\SnakeClient\\Layout\\MatchGround.razor",
               "RelativeDocumentMoniker": "Layout\\MatchGround.razor",
@@ -145,13 +144,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Snake.cs",
               "DocumentMoniker": "D:\\Snake\\SnakeClient\\GameClass\\Snake.cs",
               "RelativeDocumentMoniker": "GameClass\\Snake.cs",
               "ToolTip": "D:\\Snake\\SnakeClient\\GameClass\\Snake.cs",
               "RelativeToolTip": "GameClass\\Snake.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAYwD8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-24T16:15:30.143Z",
               "EditorCaption": ""
@@ -206,7 +205,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ResultBoard.razor",
               "DocumentMoniker": "D:\\Snake\\SnakeClient\\Layout\\ResultBoard.razor",
               "RelativeDocumentMoniker": "Layout\\ResultBoard.razor",
@@ -214,8 +213,7 @@
               "RelativeToolTip": "Layout\\ResultBoard.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-27T01:48:35.985Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-27T01:48:35.985Z"
             },
             {
               "$type": "Document",
