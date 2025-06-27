@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SnakeClient</title>
+    <base href="/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="SnakeClient.styles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="_content/Blazor.Extensions.Canvas/blazor.extensions.canvas.js"></script>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+        let gameLoopInstance = null;
+        window.startGameLoop = (dotNetObjectRef) => {
+            gameLoopInstance = dotNetObjectRef;
+            requestAnimationFrame(step);
+        };
+
+        const step = (timestamp) => {
+            if (gameLoopInstance) {
+                gameLoopInstance.invokeMethodAsync('Step', timestamp)
+                    .then(() => {
+
+                    })
+                    .catch(error => {
+                        console.error('Error calling Step method:', error);
+                    });
+            } else {
+                console.log('gameLoopInstance is null, skipping');
+            }
+            requestAnimationFrame(step);
+        };
+
+        //const step = async (timestamp) => {
+        //    if (gameLoopInstance) {
+        //        try {
+        //            await gameLoopInstance.invokeMethodAsync('Step', timestamp);
+        //        } catch (error) {
+        //            console.error('Error calling Step method:', error);
+        //        }
+        //    }
+        //    requestAnimationFrame(step);
+        //};
+        //let isProcessing = false;
+
+        //const step = async (timestamp) => {
+        //    if (gameLoopInstance && !isProcessing) {
+        //        isProcessing = true;
+        //        gameLoopInstance.invokeMethodAsync('Step', timestamp)
+        //            .then(() => {
+        //                isProcessing = false;
+        //            })
+        //            .catch(error => {
+        //                console.error('Error calling Step method:', error);
+        //                isProcessing = false;
+        //            });
+        //    }
+        //    requestAnimationFrame(step);
+        //};
+        //let isProcessing = false;
+
+        //const step = async (timestamp) => {
+        //    if (gameLoopInstance && !isProcessing) {
+        //        isProcessing = true;
+        //        gameLoopInstance.invokeMethodAsync('Step', timestamp)
+        //            .catch(error => console.error('Error calling Step method:', error))
+        //            .finally(() => {
+        //                isProcessing = false;
+        //            });
+        //    }
+        //    requestAnimationFrame(step);
+        //};
+    </script>
+</body>
+
+</html>

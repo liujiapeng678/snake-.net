@@ -1,0 +1,6 @@
+@SnakeRunningSystem_HostAddress = http://localhost:5273
+
+GET {{SnakeRunningSystem_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,71 @@
+﻿@using SnakeClient.Store
+@using Fluxor
+@using Blazor.Extensions.Canvas;
+@using Blazor.Extensions.Canvas.Canvas2D;
+@using SnakeClient.GameClass
+@inject IState<PkState> PkState
+@inject GameLoop loop
+@inject IJSRuntime JS
+
+<div @onkeydown="HandleKeyDown" class="gamemap" @ref="parent" tabindex="0">
+    <BECanvas @ref="canvasRef" Width="840" Height="780" />
+</div>
+
+@code {
+    private ElementReference parent;
+    private BECanvas canvasRef;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await Task.Delay(50); // 给DOM一点时间
+            var element = await JS.InvokeAsync<IJSObjectReference>("eval", "document.querySelector('.gamemap')");
+            await element.InvokeVoidAsync("focus");
+            Canvas2DContext canvas2DContext = await canvasRef.CreateCanvas2DAsync();
+            await loop.StartGameLoop();
+            GameMap gameMap = new GameMap(canvas2DContext, canvasRef, parent, loop, PkState);
+            PkState.Value.Game = gameMap;
+        }
+    }
+    private async Task HandleKeyDown(KeyboardEventArgs e)
+    {
+        int d = -1;
+
+        switch (e.Key.ToLower())
+        {
+            case "w":
+                d = 0;
+                break;
+            case "d":
+                d = 1;
+                break;
+            case "s":
+                d = 2;
+                break;
+            case "a":
+                d = 3;
+                break;
+        }
+        
+        if (d >= 0)
+        {
+            Console.WriteLine(d);
+            await PkState.Value.Socket.SendAsync(new
+            {
+                @event = "move",
+                d = d
+            });
+        }
+    }
+}
+
+<style scoped>
+div.gamemap{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+</style>

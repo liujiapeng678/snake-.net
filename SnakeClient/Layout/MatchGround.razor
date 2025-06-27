@@ -1,0 +1,669 @@
+﻿
+@using System.Text.Json
+@using Fluxor
+@using SnakeClient.Services
+@using SnakeClient.Store
+@using System.Net.Http.Headers
+@inject NavigationManager NavigationManager
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+@inject IState<UserState> UserState
+@inject IState<PkState> PkState
+@inject IWebSocketService WebSocketService
+
+
+
+<div class="snake-matchground">
+    <!-- 动态背景蛇形轨迹 -->
+    <div class="snake-trail"></div>
+
+    <!-- 游戏标题装饰 -->
+    <div class="game-header">
+        <h2 class="game-title">贪吃蛇人机对战平台</h2>
+    </div>
+
+    <div class="row justify-content-center">
+        <!-- 玩家区域 - 带蛇形装饰边框 -->
+        <div class="col-md-3 player-area">
+            <div class="snake-frame player-frame">
+                <div class="user-photo">
+                    <img src="@UserState.Value.Photo" alt="用户头像" class="snake-avatar">
+                </div>
+                <div class="user-name">
+                    @UserState.Value.Username
+                </div>
+            </div>
+        </div>
+
+        <!-- VS区域 - 添加动态蛇形VS -->
+        <div class="col-md-2 vs-area">
+            <div class="snake-vs-container">
+                <img src="http://liujiapeng.tj.cn:8080/wp-content/uploads/2024/11/vs.png" class="animated-vs" alt="VS动画">
+                <div class="snake-battle">
+                    <div class="snake-dot red-dot"></div>
+                    <div class="snake-dot yellow-dot"></div>
+                    <div class="snake-dot green-dot"></div>
+                    <div class="snake-dot blue-dot"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 对手区域 - 带蛇形装饰边框 -->
+        <div class="col-md-3 opponent-area">
+            <div class="snake-frame opponent-frame">
+                <div class="user-photo">
+                    <img src="@PkState.Value.OpponentPhoto" alt="对手头像" class="snake-avatar">
+                </div>
+                <div class="user-name">
+                    @PkState.Value.OpponentName
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 战斗控制区域 -->
+    <div class="row battle-controls mt-4">
+        <div class="col-md-12">
+            <div class="snake-panel">
+                <div class="bot-selection">
+                    <div class="snake-label">
+                        选择出战人员
+                    </div>
+                    <div class="custom-select-wrapper">
+                        <select class="form-select snake-select" @bind="@PkState.Value.SelectedBot">
+                            <option disabled>选择你的AI机器人...</option>
+                            @foreach (var Bot in Bots)
+                            {
+                                <option value="@Bot.Id">@Bot.BotName</option>
+                            }
+                            <option disabled>────────────────</option>
+                            <option disabled class="create-bot">🤖 还没有bot？去个人中心创建！</option>
+                        </select>
+                        <div class="select-arrow"><i class="fas fa-caret-down"></i></div>
+                    </div>
+                </div>
+
+                <div class="battle-buttons">
+                    <button @onclick="SwitchStatus" class="btn snake-btn snake-btn-left">
+                        <i class="fas fa-sword"></i>&nbsp;
+                        @if (PkState.Value.Status == "匹配中(再次点击取消)")
+                        {
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        }
+                        @PkState.Value.Status
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 动态食物元素 -->
+    <div class="floating-food apple"></div>
+    <div class="floating-food grape"></div>
+    <div class="floating-food orange"></div>
+</div>
+
+
+@code {
+    public class Bot
+    {
+        public int Id { get; set; }
+        public string BotName { get; set; } = "";
+        public string BotDescription { get; set; } = "";
+        public string Code { get; set; } = "";
+        public int Rating { get; set; }
+    }
+    private List<Bot> Bots = new() { new Bot { Id = -1, BotName = "亲自上阵", BotDescription = "", Code = "", Rating = 3500 } };
+
+    protected override async Task OnInitializedAsync()
+    {
+        await RefreshBots();
+    }
+    private async Task RefreshBots()
+    {
+        var newBots = await Http.GetFromJsonAsync<List<Bot>>($"http://localhost:5081/api/bot/getlist/{UserState.Value.Id}");
+
+        if (newBots != null)
+        {
+            Bots.AddRange(newBots);
+        }
+        StateHasChanged();
+    }
+    private async Task SwitchStatus()
+    {
+        if (PkState.Value.Status == "开始匹配")
+        {
+            PkState.Value.Status = "匹配中(再次点击取消)";
+            Bot? select = null;
+            foreach(Bot b in Bots)
+            {
+                if (b.Id == PkState.Value.SelectedBot)
+                {
+                    select = b;
+                }
+            }
+            PkState.Value.SelectedBotRating = select.Rating;
+            await PkState.Value.Socket.SendAsync(new
+            {
+                @event = "start-match",
+                botId = PkState.Value.SelectedBot,
+                rating = select.Rating
+            });
+        }
+        else if (PkState.Value.Status == "匹配中(再次点击取消)")
+        {
+            PkState.Value.Status = "开始匹配";
+            await PkState.Value.Socket.SendAsync(new
+            {
+                @event = "stop-match"
+            });
+        }
+        StateHasChanged();
+    }
+}
+
+<style>
+    .matchground {
+        width: 60vw;
+        height: 70vh;
+        margin: 40px auto;
+        background: rgba(50, 50, 50, 0.25);
+    }
+
+    .user-photo {
+        text-align: center;
+        margin-top: 4vh;
+    }
+
+        .user-photo > img {
+            border-radius: 50%;
+            width: 20vh;
+        }
+
+    .user-name {
+        text-align: center;
+        font-size: 24px;
+        font-weight: 600;
+        color: white;
+        margin-top: 2vh;
+    }
+
+    .custom-btn-left {
+        border-radius: 20px 0 0 20px;
+        height: 56px;
+        min-height: 56px;
+        font-size: 18px;
+    }
+
+    .custom-btn-right {
+        border-radius: 0 20px 20px 0;
+        height: 56px;
+        min-height: 56px;
+        font-size: 18px;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .col-4 {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+
+    .snake-matchground {
+        width: 80vw;
+        min-height: 80vh;
+        margin: 20px auto;
+        background: radial-gradient(circle, #1a2a3a, #0a1420);
+        border-radius: 15px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        border: 2px solid #4db8ff;
+        padding: 20px;
+        animation: background-pulse 10s infinite alternate;
+    }
+
+    @@keyframes background-pulse {
+
+        0% {
+            background-position: 0% 50%;
+        }
+
+        100% {
+            background-position: 100% 50%;
+        }
+    }
+
+    /* 动态蛇形轨迹背景 */
+    .snake-trail {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('https://example.com/snake-pattern.png') repeat;
+        opacity: 0.1;
+        animation: trail-move 30s linear infinite;
+    }
+
+    @@keyframes trail-move {
+
+        0% {
+            background-position: 0 0;
+        }
+
+        100% {
+            background-position: 100% 100%;
+        }
+    }
+
+    .game-header {
+        text-align: center;
+        margin-bottom: 30px;
+        position: relative;
+    }
+
+    .snake-logo {
+        height: 60px;
+        margin-bottom: 10px;
+        animation: bounce 3s infinite;
+    }
+
+    @@keyframes bounce {
+
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    .game-title {
+        color: #4db8ff;
+        text-shadow: 0 0 10px rgba(77, 184, 255, 0.7);
+        font-weight: bold;
+        letter-spacing: 2px;
+        font-size: 1.8rem;
+        font-family: 'Press Start 2P', cursive;
+    }
+
+    .player-area, .opponent-area {
+        position: relative;
+        padding: 10px;
+        z-index: 2;
+    }
+
+    .snake-frame {
+        position: relative;
+        padding: 20px;
+        background: rgba(15, 30, 45, 0.6);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        border: 2px solid #3cac6a;
+        animation: glow 3s infinite alternate;
+        transition: all 0.3s ease;
+    }
+
+    @@keyframes glow {
+
+        from {
+            box-shadow: 0 0 5px -5px #3cac6a;
+        }
+
+        to {
+            box-shadow: 0 0 20px 5px #3cac6a;
+        }
+    }
+
+    .opponent-frame {
+        border-color: #ff5252;
+    }
+
+        .opponent-frame.glow {
+            animation: glow-red 3s infinite alternate;
+        }
+
+    @@keyframes glow-red {
+
+        from {
+            box-shadow: 0 0 5px -5px #ff5252;
+        }
+
+        to {
+            box-shadow: 0 0 20px 5px #ff5252;
+        }
+    }
+
+    .snake-avatar {
+        width: 120px;
+        height: 180px;
+        border-radius: 50%;
+        border: 3px solid #4db8ff;
+        padding: 5px;
+        margin: 0 auto;
+        display: block;
+        object-fit: cover;
+        background: rgba(20, 40, 60, 0.8);
+    }
+
+    .user-name {
+        color: #e2f3f5;
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-top: 10px;
+        text-align: center;
+        text-shadow: 0 0 5px rgba(77, 184, 255, 0.7);
+        position: relative;
+        padding: 5px 0;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    .vs-area {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+    }
+
+    .snake-vs-container {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: rgba(30, 30, 50, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #ffc107;
+        box-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
+    }
+
+    .animated-vs {
+        width: 100px;
+        height: 100px;
+        z-index: 1;
+    }
+
+    .snake-battle {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        animation: rotate 10s linear infinite;
+    }
+
+    @@keyframes rotate {
+
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .snake-dot {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+    }
+
+    .red-dot {
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #ff5252;
+        box-shadow: 0 0 10px #ff5252;
+    }
+
+    .yellow-dot {
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #ffc107;
+        box-shadow: 0 0 10px #ffc107;
+    }
+
+    .green-dot {
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        background: #4db8ff;
+        box-shadow: 0 0 10px #4db8ff;
+    }
+    .blue-dot {
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+        background: #228B22;
+        box-shadow: 0 0 10px #228B22;
+    }
+
+    /* 蛇形装饰线条 */
+    .snake-decoration {
+        position: absolute;
+        width: 40px;
+        height: 10px;
+        background: #4db8ff;
+        border-radius: 5px;
+        animation: snake-dance 2s infinite alternate;
+    }
+
+    @@keyframes snake-dance {
+
+        0% {
+            height: 10px;
+        }
+
+        100% {
+            height: 30px;
+        }
+    }
+
+    .left-snake {
+        left: -30px;
+        top: 50%;
+        transform: rotate(-45deg);
+    }
+
+    .right-snake {
+        right: -30px;
+        top: 50%;
+        transform: rotate(45deg);
+    }
+
+    .battle-controls {
+        margin-top: 40px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .snake-panel {
+        background: rgba(15, 30, 45, 0.7);
+        border-radius: 10px;
+        padding: 20px;
+        border: 1px solid #ffc107;
+        box-shadow: 0 0 15px rgba(255, 193, 7, 0.3);
+    }
+
+    .bot-selection {
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .snake-label {
+        color: #ffc107;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        text-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
+    }
+
+    .snake-icon {
+        width: 30px;
+        margin-right: 10px;
+    }
+
+    .custom-select-wrapper {
+        position: relative;
+    }
+
+    .snake-select {
+        background: rgba(20, 40, 60, 0.8);
+        border: 1px solid #4db8ff;
+        color: #e2f3f5;
+        font-size: 1rem;
+        height: 50px;
+        padding-left: 20px;
+        border-radius: 25px;
+        box-shadow: inset 0 0 10px rgba(77, 184, 255, 0.3);
+        appearance: none;
+    }
+
+    .select-arrow {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        color: #4db8ff;
+        pointer-events: none;
+    }
+
+    .create-bot {
+        color: #ffc107 !important;
+        font-style: italic;
+        cursor: pointer;
+        background: rgba(77, 184, 255, 0.1) !important;
+    }
+
+    .battle-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .snake-btn {
+        min-height: 56px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        background: linear-gradient(to right, #2c7744, #3cac6a);
+        color: white;
+        border: none;
+        border-radius: 30px;
+        padding: 10px 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        min-width: 200px;
+    }
+
+    .snake-btn-left {
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 30px;
+    }
+
+    .snake-btn-right {
+        border-top-right-radius: 30px;
+        border-bottom-right-radius: 30px;
+    }
+
+    .manual-play {
+        background: linear-gradient(to right, #c94b4b, #ff5252);
+    }
+
+    .snake-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .snake-btn:active {
+        transform: translateY(1px);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .snake-btn:after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: rgba(255, 255, 255, 0.1);
+        transform: rotate(30deg);
+        animation: shine 3s infinite ease-in-out;
+    }
+
+    @@keyframes shine {
+
+        0% {
+            transform: translateX(-100%) rotate(30deg);
+        }
+
+        100% {
+            transform: translateX(100%) rotate(30deg);
+        }
+    }
+
+    .floating-food {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        z-index: 1;
+        animation: float 8s infinite ease-in-out;
+    }
+
+    .apple {
+        top: 10%;
+        left: 15%;
+        background: #ff5252;
+        box-shadow: 0 0 10px #ff5252;
+        animation-delay: 0s;
+    }
+
+    .grape {
+        top: 25%;
+        right: 20%;
+        background: #b967ff;
+        box-shadow: 0 0 10px #b967ff;
+        animation-delay: 2s;
+    }
+
+    .orange {
+        bottom: 30%;
+        left: 25%;
+        background: #ff9a3d;
+        box-shadow: 0 0 10px #ff9a3d;
+        animation-delay: 4s;
+    }
+
+    @@keyframes float {
+
+        0%, 100% {
+            transform: translate(0, 0) scale(1);
+        }
+
+        25% {
+            transform: translate(20px, -10px) scale(1.2);
+        }
+
+        50% {
+            transform: translate(-15px, 15px) scale(0.8);
+        }
+
+        75% {
+            transform: translate(10px, 20px) scale(1.1);
+        }
+    }
+</style>

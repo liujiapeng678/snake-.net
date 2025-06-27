@@ -1,0 +1,235 @@
+﻿@page "/"
+@attribute [Authorize]
+@using Microsoft.AspNetCore.Authorization
+@using System.Net.WebSockets
+@using System.Text
+@using SnakeClient.Services
+@using System.Text.Json
+@using SnakeClient.Store
+@using Fluxor
+@using SnakeClient.GameClass;
+@using Microsoft.JSInterop
+@inject IJSRuntime JSRuntime
+@inject IWebSocketService WebSocketService
+@inject IState<PkState> PkState
+@inject IState<UserState> UserState
+@inject IDispatcher Dispatcher
+
+
+@if (PkState.Value.GoToPlayground) // 条件渲染容器
+{
+    <div class="container" style="@(PkState.Value.GoToPlayground ? "display: block;" : "display: none;")">
+        <div class="row">
+            <div class="col-2" style="margin-top:45px;">
+                <div class="card">
+                    <div class="card-header">
+                        我方：@PkState.Value.Me
+                    </div>
+                </div>
+            </div>
+            <div class="col-10">
+                <PlayGround />
+            </div>
+        </div>
+    </div>
+}
+@if (!PkState.Value.GoToPlayground)
+{
+    <MatchGround />
+}
+
+@if (PkState.Value.Loser != "none")
+{
+    <ResultBoard />
+}
+
+@code {
+    private string socketUrl => $"ws://localhost:5081/ws/{UserState.Value.Id}";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ConnectWebSocket();
+    }
+    // 在你的组件或服务中添加这个方法
+    private async void HandleWebSocketMessage(string message)
+    {
+        try
+        {
+            var data = JsonSerializer.Deserialize<JsonElement>(message);
+
+            if (data.TryGetProperty("event", out var eventElement))
+            {
+                var eventType = eventElement.GetString();
+
+                switch (eventType)
+                {
+                    case "match-found":
+                        await HandleMatchFound(data);
+                        break;
+
+                    case "move":
+                        HandleMove(data);
+                        break;
+
+                    case "result":
+                        HandleResult(data);
+                        break;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"处理WebSocket消息时出错: {ex.Message}");
+        }
+    }
+
+    private async Task ConnectWebSocket()
+    {
+        var connected = await WebSocketService.ConnectAsync(socketUrl);
+
+        if (connected)
+        {
+            Console.WriteLine("Connected to WebSocket server");
+            WebSocketService.OnMessageReceived += HandleWebSocketMessage;
+            //store更新socket
+            PkState.Value.Socket = WebSocketService;
+        }
+    }
+
+    private async Task HandleMatchFound(JsonElement data)
+    {
+        Dispatcher.Dispatch(new UpdateOpponentAction(data.GetProperty("opponentName").GetString(), data.GetProperty("opponentPhoto").GetString()));
+        Dispatcher.Dispatch(new UpdateStatusAction("匹配成功"));
+        StateHasChanged();
+        PkState.Value.Map = ConvertJsonElementTo2DArray(data.GetProperty("map"));
+        PkState.Value.AId = data.GetProperty("aId").GetInt32();
+        PkState.Value.ASx = data.GetProperty("aSx").GetInt32();
+        PkState.Value.ASy = data.GetProperty("aSy").GetInt32();
+        PkState.Value.BId = data.GetProperty("bId").GetInt32();
+        PkState.Value.BSx = data.GetProperty("bSx").GetInt32();
+        PkState.Value.BSy = data.GetProperty("bSy").GetInt32();
+        if (data.GetProperty("me").GetString() == "A")
+        {
+            PkState.Value.Me = "蓝";
+        }
+        else
+        {
+            PkState.Value.Me = "红";
+        }
+
+        StateHasChanged();
+        await Task.Delay(2000);
+        SetGoToPlayGround(true);
+    }
+    public static int[,] ConvertJsonElementTo2DArray(JsonElement mapElement)
+    {
+        try
+        {
+            // 检查是否为null
+            if (mapElement.ValueKind == JsonValueKind.Null)
+            {
+                return null;
+            }
+
+            // 检查是否为数组
+            if (mapElement.ValueKind != JsonValueKind.Array)
+            {
+                Console.WriteLine($"Map数据不是数组类型: {mapElement.ValueKind}");
+                return null;
+            }
+
+            var outerArray = mapElement.EnumerateArray().ToArray();
+            if (outerArray.Length == 0)
+            {
+                return new int[0, 0];
+            }
+
+            // 获取数组维度
+            int rows = outerArray.Length;
+            int cols = 0;
+
+            // 检查第一行来确定列数
+            if (outerArray[0].ValueKind == JsonValueKind.Array)
+            {
+                cols = outerArray[0].GetArrayLength();
+            }
+            else
+            {
+                Console.WriteLine("Map数据格式错误：不是二维数组");
+                return null;
+            }
+
+            // 创建二维数组
+            int[,] result = new int[rows, cols];
+
+            // 填充数据
+            for (int i = 0; i < rows; i++)
+            {
+                if (outerArray[i].ValueKind != JsonValueKind.Array)
+                {
+                    Console.WriteLine($"第{i}行不是数组");
+                    continue;
+                }
+
+                var innerArray = outerArray[i].EnumerateArray().ToArray();
+                int actualCols = Math.Min(cols, innerArray.Length);
+
+                for (int j = 0; j < actualCols; j++)
+                {
+                    if (innerArray[j].ValueKind == JsonValueKind.Number)
+                    {
+                        result[i, j] = innerArray[j].GetInt32();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"位置[{i},{j}]不是数字: {innerArray[j].ValueKind}");
+                        result[i, j] = 0; // 默认值
+                    }
+                }
+            }
+
+            Console.WriteLine($"成功转换地图数组: {rows}x{cols}");
+            return result;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"转换地图数组时出错: {ex.Message}");
+            return null;
+        }
+    }
+
+    private void HandleMove(JsonElement data)
+    {
+        int aMove = data.GetProperty("aMove").GetInt32();
+        int bMove = data.GetProperty("bMove").GetInt32();
+        PkState.Value.Game.Snakes[0].SetDirection(aMove);
+        PkState.Value.Game.Snakes[1].SetDirection(bMove);
+    }
+
+    private void HandleResult(JsonElement data)
+    {
+        Console.WriteLine("======================================================");
+        Console.WriteLine(data.GetProperty("loser").GetString());
+        Console.WriteLine("======================================================");
+        string loser = data.GetProperty("loser").GetString();
+
+        if (loser == "all" || loser == "A")
+        {
+            PkState.Value.Game.Snakes[0].Status = "die";
+        }
+
+        if (loser == "all" || loser == "B")
+        {
+            PkState.Value.Game.Snakes[1].Status = "die";
+        }
+
+        PkState.Value.Loser = loser;
+        StateHasChanged();
+    }
+
+    private void SetGoToPlayGround(bool newGoToPlayGround)
+    {
+        PkState.Value.GoToPlayground = newGoToPlayGround;
+        StateHasChanged();
+    }
+}

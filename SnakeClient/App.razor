@@ -1,0 +1,125 @@
+﻿@using Fluxor
+@using SnakeClient.Store
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Routing
+@using System.Reflection
+@using System.Linq
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+@inject IState<UserState> UserState
+@inject IDispatcher Dispatcher
+
+
+
+<Fluxor.Blazor.Web.StoreInitializer />
+<Router AppAssembly="@typeof(App).Assembly" OnNavigateAsync="@OnNavigateAsync">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <PageTitle>Not found</PageTitle>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <p role="alert">Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
+@code {
+    private async Task OnNavigateAsync(NavigationContext context)
+    {
+        var targetPath = context.Path; // 目标路由路径
+
+        // 1. 检查是否存在JWT令牌
+        string jwtToken = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "token");
+        if (!string.IsNullOrEmpty(jwtToken))
+        {
+            string id = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "id");
+            string photo = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "photo");
+            string username = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "username");
+            Dispatcher.Dispatch(new UpdateUserAction(id, username, photo, jwtToken, true));
+            return; // 继续导航
+        }
+        // 2. 检查路由元数据是否需要认证
+        if (RequiresAuthentication(context))
+        {
+            NavigationManager.NavigateTo("/login", forceLoad: true);
+        } 
+    }
+    private bool RequiresAuthentication(NavigationContext context)
+    {
+        try
+        {
+            var targetPath = context.Path;
+
+            // 获取当前程序集中的所有组件类型
+            var assembly = typeof(App).Assembly;
+            var componentTypes = assembly.GetTypes()
+                .Where(t => t.IsSubclassOf(typeof(ComponentBase)));
+
+            // 查找匹配当前路由的组件
+            foreach (var componentType in componentTypes)
+            {
+                var routeAttributes = componentType.GetCustomAttributes(typeof(RouteAttribute), false)
+                    .Cast<RouteAttribute>();
+
+                foreach (var routeAttr in routeAttributes)
+                {
+                    if (IsRouteMatch(routeAttr.Template, targetPath))
+                    {
+                        // 检查该组件是否有 [Authorize] 特性
+                        var authorizeAttr = componentType.GetCustomAttributes(typeof(AuthorizeAttribute), false)
+                            .Cast<AuthorizeAttribute>()
+                            .FirstOrDefault();
+                        return authorizeAttr != null;
+                    }
+                }
+            }
+
+            return false;
+        }
+        catch (Exception ex)
+        {
+            // 记录错误，默认不需要认证
+            Console.WriteLine($"检查路由认证时出错: {ex.Message}");
+            return false;
+        }
+    }
+
+    private bool IsRouteMatch(string routeTemplate, string requestPath)
+    {
+        // 处理路由模板和请求路径
+        var template = routeTemplate.Trim('/').ToLowerInvariant();
+        var path = requestPath.Trim('/').ToLowerInvariant();
+
+        // 精确匹配
+        if (template == path) return true;
+
+        // 处理参数路由（如 /user/{id}）
+        if (template.Contains('{') && template.Contains('}'))
+        {
+            var templateParts = template.Split('/');
+            var pathParts = path.Split('/');
+
+            if (templateParts.Length != pathParts.Length) return false;
+
+            for (int i = 0; i < templateParts.Length; i++)
+            {
+                var templatePart = templateParts[i];
+                var pathPart = pathParts[i];
+
+                // 如果是参数（包含{}），跳过比较
+                if (templatePart.StartsWith('{') && templatePart.EndsWith('}'))
+                    continue;
+
+                // 非参数部分必须完全匹配
+                if (templatePart != pathPart) return false;
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+}
+
+          @*   /j2jJLhce?JR *@

@@ -1,0 +1,222 @@
+﻿@page "/register"
+@using Fluxor
+@using System.ComponentModel.DataAnnotations;
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JsRuntime
+@inject IDispatcher Dispatcher
+@inject HttpClient Http
+
+<div class="register-container">
+
+    <div class="row justify-content-md-center">
+        <div class="col-12 col-md-6 col-lg-4">
+            <EditForm Model="this" OnValidSubmit="HandleRegister">
+                <DataAnnotationsValidator /> @* 启用数据注解验证 [6,7](@ref) *@
+                <div class="mb-3">
+                    <label for="username" class="form-label">用户名</label>
+                    <InputText @bind-Value="Username" class="form-control" id="username" placeholder="请输入用户名" />
+                    <ValidationMessage For="() => Username" /> @* 验证消息 [6](@ref) *@
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">密码</label>
+                    <InputText type="password" @bind-Value="Password" class="form-control" id="password" placeholder="请输入密码" />
+                    <ValidationMessage For="() => Password" /> @* 验证消息 [6](@ref) *@
+                </div>
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">确认密码</label>
+                    <InputText type="password" @bind-Value="ConfirmPassword" class="form-control" id="confirmPassword" placeholder="请再次输入密码" />
+                    <ValidationMessage For="() => ConfirmPassword" />
+                </div>
+                <div class="mb-3">
+                    <label for="photo" class="form-label">个人头像</label>
+                    <InputText @bind-Value="Photo" class="form-control" id="photo" placeholder="请输入头像url" />
+                    <ValidationMessage For="() => Photo" />
+                </div>
+                @if (!string.IsNullOrEmpty(ErrorMessage))
+                {
+                    <div class="alert alert-danger">@ErrorMessage</div>
+                }
+
+                <button type="submit" class="btn btn-primary w-100">注册</button>
+            </EditForm>
+        </div>
+    </div>
+</div>
+<div class="register-background">
+    <!-- 背景装饰元素1: 几何图案 -->
+    <div class="bg-deco bg-element-1"></div>
+
+    <!-- 背景装饰元素2: 柔和光晕 -->
+    <div class="bg-deco bg-element-2"></div>
+
+    <!-- 背景装饰元素3: 纹理叠加 -->
+    <div class="bg-deco bg-element-3"></div>
+</div>
+
+@code {
+
+    [Required(ErrorMessage = "用户名不能为空")]
+    [MinLength(3, ErrorMessage = "用户名至少需要3个字符")]
+    [MaxLength(20, ErrorMessage = "用户名不能超过20个字符")]
+    public string Username { get; set; } = "";
+
+    [Required(ErrorMessage = "密码不能为空")]
+    [MinLength(6, ErrorMessage = "密码至少需要6个字符")]
+    public string Password { get; set; } = "";
+
+    [Required(ErrorMessage = "请确认密码")]
+    [Compare(nameof(Password), ErrorMessage = "两次输入的密码不一致")]
+    public string ConfirmPassword { get; set; } = "";
+
+    [Required(ErrorMessage = "请输入头像url")]
+    public string Photo { get; set; } = "http://liujiapeng.tj.cn:8080/wp-content/uploads/2024/06/5f8e14743ae07d28e8496599174ea40.jpg";
+
+    public string ErrorMessage { get; set; } = "";
+
+    private async Task HandleRegister()
+    {
+        ErrorMessage = "";
+
+        try
+        {
+            // 发送POST请求到后端API[2,6](@ref)
+            var response = await Http.PostAsJsonAsync(
+                "http://localhost:5081/api/user/register",
+                new
+                {
+                    username = Username,
+                    password = Password,
+                    photo = Photo
+                }
+            );
+
+            // 解析响应
+            if (response.IsSuccessStatusCode)
+            {
+                ErrorMessage = $"注册成功，2秒后跳转登陆界面";
+                StateHasChanged();
+                await Task.Delay(2000); // 3000毫秒 = 3秒
+                NavigationManager.NavigateTo("/login"); // 跳转到登录页
+            }
+            else
+            {
+                ErrorMessage = $"注册失败: 用户名重复";
+            }
+        }
+        catch (HttpRequestException ex)
+        {
+            ErrorMessage = $"网络错误: {ex.Message}";
+        }
+    }
+}
+
+<style>
+    /* ======== 容器修改：增加高度 ======== */
+    .register-container {
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(8px);
+        border-radius: 16px;
+        /* 增加高度和垂直间距 */
+        padding: 3rem 2.5rem;
+        min-height: 420px; /* 增加高度 */
+        max-width: 720px;
+        margin: 50px auto;
+        /* 内部空间优化 */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.2); /* 阴影扩大40% */
+        border: 1px solid rgba(255,255,255,0.3); /* 发光白边提升精致感 */
+    }
+
+    /* ======== 保留亮眼背景 ======== */
+    .register-background {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        bottom: 0;
+        left: 250px;
+        z-index: -1;
+        overflow: hidden;
+    }
+
+    .bg-deco {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(50px);
+        opacity: 0.4; /* 更强烈的色彩 */
+        mix-blend-mode: overlay;
+    }
+
+    .bg-element-1 {
+        top: 20%;
+        left: 15%;
+        width: 420px;
+        height: 420px;
+        background: linear-gradient(135deg, #5e2ced 0%, #2871fa 100%);
+        animation: pulse 6s infinite alternate;
+    }
+
+    .bg-element-2 {
+        top: 65%;
+        left: 65%;
+        width: 520px;
+        height: 520px;
+        background: linear-gradient(45deg, #ff5733 0%, #ffc300 100%);
+        animation: pulse 10s infinite alternate;
+    }
+
+    .bg-element-3 {
+        top: 25%;
+        left: 70%;
+        width: 380px;
+        height: 380px;
+        background: linear-gradient(225deg, #00e0b0 0%, #00a8ff 100%);
+        animation: pulse 8s infinite alternate;
+    }
+
+    @@keyframes pulse {
+        0% {
+            transform: scale(1);
+            filter: blur(50px);
+        }
+
+        50% {
+            transform: scale(1.5);
+            filter: blur(30px);
+        }
+
+        100% {
+            transform: scale(1);
+            filter: blur(50px);
+        }
+    }
+
+    /* ======== 表单元素间距优化 ======== */
+    .form-group {
+        margin-bottom: 1.8rem; /* 增加元素间距 */
+    }
+
+    /* ======== 输入框样式优化 ======== */
+    .form-control {
+        padding: 0.9rem 1rem; /* 增加内边距 */
+        font-size: 1.05rem; /* 稍大字体 */
+    }
+
+    /* ======== 按钮样式优化 ======== */
+    .btn-primary {
+        padding: 0.9rem; /* 增加高度 */
+        margin-top: 1rem; /* 增加上方间距 */
+    }
+
+    /* ======== 注册提示位置优化 ======== */
+    .register-prompt {
+        margin-top: 1.8rem; /* 下移位置 */
+    }
+
+    /* ======== 标题位置优化 ======== */
+    .login-container h3 {
+        margin-bottom: 1.8rem; /* 增加标题下方间距 */
+    }
+</style>
+            @*     http://liujiapeng.tj.cn:8080/wp-content/uploads/2024/06/5f8e14743ae07d28e8496599174ea40.jpg *@

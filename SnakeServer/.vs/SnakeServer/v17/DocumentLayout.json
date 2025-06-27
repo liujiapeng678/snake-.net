@@ -1,0 +1,224 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Snake\\SnakeServer\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|d:\\snake\\snakeserver\\controllers\\recordcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|solutionrelative:controllers\\recordcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|d:\\snake\\snakeserver\\utils\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|solutionrelative:utils\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|d:\\snake\\snakeserver\\middleware\\websocketmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|solutionrelative:middleware\\websocketmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|d:\\snake\\snakeserver\\models\\users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|solutionrelative:models\\users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|d:\\snake\\snakeserver\\models\\records.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|solutionrelative:models\\records.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|d:\\snake\\snakeserver\\controllers\\botcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|solutionrelative:controllers\\botcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|d:\\snake\\snakeserver\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|d:\\snake\\snakeserver\\controllers\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|solutionrelative:controllers\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|d:\\snake\\snakeserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|d:\\snake\\snakeserver\\utils\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|solutionrelative:utils\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|d:\\snake\\snakeserver\\utils\\cell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|solutionrelative:utils\\cell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|d:\\snake\\snakeserver\\models\\bots.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30A8422D-EF78-43A8-A03B-2F391BD3F31B}|SnakeServer.csproj|solutionrelative:models\\bots.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Users.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeServer\\Models\\Users.cs",
+              "RelativeDocumentMoniker": "Models\\Users.cs",
+              "ToolTip": "D:\\Snake\\SnakeServer\\Models\\Users.cs",
+              "RelativeToolTip": "Models\\Users.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T04:05:40.655Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BotController.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeServer\\Controllers\\BotController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BotController.cs",
+              "ToolTip": "D:\\Snake\\SnakeServer\\Controllers\\BotController.cs",
+              "RelativeToolTip": "Controllers\\BotController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T03:51:55.758Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RecordController.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeServer\\Controllers\\RecordController.cs",
+              "RelativeDocumentMoniker": "Controllers\\RecordController.cs",
+              "ToolTip": "D:\\Snake\\SnakeServer\\Controllers\\RecordController.cs",
+              "RelativeToolTip": "Controllers\\RecordController.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAA5wBUAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T03:51:53.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Records.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeServer\\Models\\Records.cs",
+              "RelativeDocumentMoniker": "Models\\Records.cs",
+              "ToolTip": "D:\\Snake\\SnakeServer\\Models\\Records.cs",
+              "RelativeToolTip": "Models\\Records.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T03:15:32.406Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GameController.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeServer\\Controllers\\GameController.cs",
+              "RelativeDocumentMoniker": "Controllers\\GameController.cs",
+              "ToolTip": "D:\\Snake\\SnakeServer\\Controllers\\GameController.cs",
+              "RelativeToolTip": "Controllers\\GameController.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAYwEIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T13:53:13.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Player.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeServer\\Utils\\Player.cs",
+              "RelativeDocumentMoniker": "Utils\\Player.cs",
+              "ToolTip": "D:\\Snake\\SnakeServer\\Utils\\Player.cs",
+              "RelativeToolTip": "Utils\\Player.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAUwBEAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-22T08:10:02.857Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "WebSocketMiddleware.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeServer\\Middleware\\WebSocketMiddleware.cs",
+              "RelativeDocumentMoniker": "Middleware\\WebSocketMiddleware.cs",
+              "ToolTip": "D:\\Snake\\SnakeServer\\Middleware\\WebSocketMiddleware.cs",
+              "RelativeToolTip": "Middleware\\WebSocketMiddleware.cs",
+              "ViewState": "AgIAAJkAAAAAAAAAAAAAAJQAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-15T08:29:25.177Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Game.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeServer\\Utils\\Game.cs",
+              "RelativeDocumentMoniker": "Utils\\Game.cs",
+              "ToolTip": "D:\\Snake\\SnakeServer\\Utils\\Game.cs",
+              "RelativeToolTip": "Utils\\Game.cs",
+              "ViewState": "AgIAAP8AAAAAAAAAAAAgwGcBAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-22T08:09:55.924Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeServer\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Snake\\SnakeServer\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T02:16:32.921Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Bots.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeServer\\Models\\Bots.cs",
+              "RelativeDocumentMoniker": "Models\\Bots.cs",
+              "ToolTip": "D:\\Snake\\SnakeServer\\Models\\Bots.cs",
+              "RelativeToolTip": "Models\\Bots.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T03:15:20.1Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeServer\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "D:\\Snake\\SnakeServer\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T06:47:12.149Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Cell.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeServer\\Utils\\Cell.cs",
+              "RelativeDocumentMoniker": "Utils\\Cell.cs",
+              "ToolTip": "D:\\Snake\\SnakeServer\\Utils\\Cell.cs",
+              "RelativeToolTip": "Utils\\Cell.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-22T08:09:48.513Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

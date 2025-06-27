@@ -1,0 +1,56 @@
+﻿@inherits LayoutComponentBase
+@using Fluxor
+@using SnakeClient.Store
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+@inject IDispatcher Dispatcher
+@inject IState<UserState> UserState
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            @if (UserState.Value.IsLogin)
+            {
+                <button class="btn btn-link" @onclick="NavigateToProfile">个人中心</button>
+                <button class="btn btn-link" @onclick="Logout">退出登录</button>
+            }
+            else
+            {
+                <button class="btn btn-link" @onclick="NavigateToLogin">登录</button>
+                <button class="btn btn-link" @onclick="NavigateToRegister">注册</button>
+            }
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code {
+   
+    private void Logout()  // state都置空，localstorage清空
+    {
+        Dispatcher.Dispatch(new UpdateUserAction("", "", "", "", false));
+        JSRuntime.InvokeVoidAsync("localStorage.removeItem", "token");
+        NavigationManager.NavigateTo("/login");
+    }
+    private void NavigateToProfile()
+    {
+        NavigationManager.NavigateTo("/profile");
+    }
+
+    private void NavigateToLogin()
+    {
+        NavigationManager.NavigateTo("/login");
+    }
+
+    private void NavigateToRegister()
+    {
+        NavigationManager.NavigateTo("/register");
+    }
+}

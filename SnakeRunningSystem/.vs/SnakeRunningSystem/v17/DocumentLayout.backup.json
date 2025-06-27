@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Snake\\SnakeRunningSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|d:\\snake\\snakerunningsystem\\utils\\botpool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|solutionrelative:utils\\botpool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|d:\\snake\\snakerunningsystem\\utils\\consumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|solutionrelative:utils\\consumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|d:\\snake\\snakerunningsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeRunningSystem\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Snake\\SnakeRunningSystem\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T04:00:48.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Consumer.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeRunningSystem\\Utils\\Consumer.cs",
+              "RelativeDocumentMoniker": "Utils\\Consumer.cs",
+              "ToolTip": "D:\\Snake\\SnakeRunningSystem\\Utils\\Consumer.cs",
+              "RelativeToolTip": "Utils\\Consumer.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAQwCkAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T03:58:32.179Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BotPool.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeRunningSystem\\Utils\\BotPool.cs",
+              "RelativeDocumentMoniker": "Utils\\BotPool.cs",
+              "ToolTip": "D:\\Snake\\SnakeRunningSystem\\Utils\\BotPool.cs",
+              "RelativeToolTip": "Utils\\BotPool.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-22T06:53:28.884Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

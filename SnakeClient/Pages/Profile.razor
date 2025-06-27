@@ -1,0 +1,484 @@
+﻿@page "/profile"
+
+@using Fluxor
+@using System.Text.Json
+@using Microsoft.AspNetCore.Components
+@using Microsoft.JSInterop
+@using SnakeClient.Store
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+@inject IState<UserState> UserState
+
+<div class="login-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-header">
+                        <img src="@(UserState.Value.Photo)" alt="个人头像" style="width: 100%;">
+                    </div>
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-header">
+                        <span style="font-size: 130%;">我的Bots</span>
+                        <span style="margin-left: 31vw; color: @DefaultSortColor;" class="sort" @onclick="DefaultSort">默认排序</span>
+                        <span style="padding-left: 1vw; color: @RatingSortColor;" class="sort" @onclick="RatingSort">按天梯分排序 </span>
+                        <span style="color: @UpColor;">↑</span>
+                        <span style="color: @DownColor;">↓</span>
+                        <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#add-bot-modal">创建Bot</button>
+                    </div>
+
+                    <!-- Bots列表 -->
+                    <div class="card-body">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>名称</th>
+                                    <th>天梯分</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var bot in SortedBots)
+                                {
+                                    <tr>
+                                        <td>@bot.BotName</td>
+                                        <td>@bot.Rating</td>
+                                        <td>
+                                            <button class="btn btn-primary me-2" data-bs-toggle="modal"
+                                                    data-bs-target="@($"#update-bot-modal-{bot.Id}")">
+                                                修改
+                                            </button>
+
+                                            <button class="btn btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="@($"#remove-bot-modal-{bot.Id}")">
+                                                删除
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 添加Bot的模态框 -->
+<div class="modal fade" id="add-bot-modal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">创建Bot</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="bot-name" class="form-label">名称</label>
+                    <input type="text" class="form-control" id="bot-name"
+                           placeholder="请输入bot名称" @bind="NewBot.Name" />
+                </div>
+                <div class="mb-3">
+                    <label for="bot-description" class="form-label">描述</label>
+                    <textarea class="form-control" id="bot-description" rows="3"
+                              placeholder="请输入bot简介" @bind="NewBot.Description"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="bot-code" class="form-label">代码</label>
+                    <textarea class="form-control" id="bot-code" rows="15"
+                              placeholder="请输入bot代码"
+                              @bind="NewBot.Code"
+                              style="font-family: 'Courier New', monospace; font-size: 14px;"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="error-message text-danger">@NewBot.ErrorMessage</div>
+                <button class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                <button class="btn btn-primary" @onclick="AddBot">创建</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 修改Bot的模态框 -->
+@foreach (var bot in SortedBots)
+{
+    <div class="modal fade" id="@($"update-bot-modal-{bot.Id}")" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">修改Bot</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="bot-name" class="form-label">名称</label>
+                        <input type="text" class="form-control"
+                               @bind="bot.BotName" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="bot-description" class="form-label">描述</label>
+                        <textarea class="form-control" rows="3"
+                                  @bind="bot.BotDescription"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="bot-code" class="form-label">代码</label>
+                        <textarea class="form-control" id="bot-code" rows="15"
+                                  placeholder="请输入bot代码"
+                                  @bind="bot.Code"
+                                  style="font-family: 'Courier New', monospace; font-size: 14px;"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="error-message text-danger">@NewBot.ErrorMessage</div>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                    <button class="btn btn-primary" @onclick="() => UpdateBot(bot)">保存修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<!-- 删除Bot的模态框 -->
+@foreach (var bot in SortedBots)
+{
+    <div class="modal fade" id="@($"remove-bot-modal-{bot.Id}")" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">删除Bot</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        确认删除
+                        <span style="color: red;">@bot.BotName</span>
+                        吗？
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button class="btn btn-danger" @onclick="() => RemoveBot(bot)">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="login-background">
+    <!-- 背景装饰元素1: 几何图案 -->
+    <div class="bg-deco bg-element-1"></div>
+
+    <!-- 背景装饰元素2: 柔和光晕 -->
+    <div class="bg-deco bg-element-2"></div>
+
+    <!-- 背景装饰元素3: 纹理叠加 -->
+    <div class="bg-deco bg-element-3"></div>
+</div>
+@code {
+
+    private List<Bot> Bots { get; set; } = new List<Bot>();
+    private List<Bot> SortedBots { get; set; } = new List<Bot>();
+
+    // 排序状态
+    private string DefaultSortColor { get; set; } = "black";
+    private string RatingSortColor { get; set; } = "gray";
+    private string UpColor { get; set; } = "gray";
+    private string DownColor { get; set; } = "gray";
+
+    // 新Bot对象，用于新增
+    private BotModel NewBot { get; set; } = new BotModel();
+
+    // Bot模型类，后端传来的bots列表里的bot
+    private class Bot
+    {
+        public int Id { get; set; }
+        public string BotName { get; set; } = "";
+        public string BotDescription { get; set; } = "";
+        public string Code { get; set; } = "";
+        public int Rating { get; set; }
+    }
+
+    private class BotModel
+    {
+        public string Name { get; set; } = "";
+        public string Description { get; set; } = "";
+        public string Code { get; set; } = "";
+        public int Rating { get; set; } = 3000;
+        public string ErrorMessage { get; set; } = "";
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await RefreshBots();
+    }
+
+    //获取Bots列表
+    private async Task RefreshBots()
+    {
+        Bots.Clear();
+        Bots = await Http.GetFromJsonAsync<List<Bot>>($"http://localhost:5081/api/bot/getlist/{UserState.Value.Id}");
+        SortedBots = Bots;
+        StateHasChanged();
+    }
+
+    //添加Bot
+    private async Task AddBot()
+    {
+        NewBot.ErrorMessage = "";
+        try
+        {
+            var response = await Http.PostAsJsonAsync(
+                "http://localhost:5081/api/bot/add",
+                new
+                {
+                    userId = UserState.Value.Id,
+                    botName = NewBot.Name,
+                    botDescription = NewBot.Description,
+                    code = NewBot.Code,
+                    rating = NewBot.Rating
+                }
+            );
+
+            if (response.IsSuccessStatusCode)
+            {
+                NewBot = new BotModel();
+                // 关闭模态框
+                await JSRuntime.InvokeVoidAsync("closeModal", $"add-bot-modal");
+                // 触发弹窗：添加成功
+                await JSRuntime.InvokeVoidAsync("alert", "添加Bot成功!");
+                await RefreshBots();
+            }
+            else
+            {
+                NewBot.ErrorMessage = "请求失败，请重试";
+            }
+        }
+        catch (Exception ex)
+        {
+            NewBot.ErrorMessage = $"添加Bot失败: {ex.Message}";
+        }
+    }
+
+    //更新Bot
+    private async Task UpdateBot(Bot bot)
+    {
+        try
+        {
+            var response = await Http.PostAsJsonAsync(
+                "http://localhost:5081/api/bot/update",
+                new
+                {
+                    id = bot.Id,
+                    userId = UserState.Value.Id,
+                    botName = bot.BotName,
+                    botDescription = bot.BotDescription,
+                    code = bot.Code,
+                    rating = bot.Rating
+                }
+            );
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine($"更新Bot成功");
+                //关闭模态框
+                await JSRuntime.InvokeVoidAsync("closeModal", $"update-bot-modal-{bot.Id}");
+                await JSRuntime.InvokeVoidAsync("alert", "更新Bot成功!");
+                await RefreshBots();
+            }
+            else
+            {
+                Console.WriteLine($"更新Bot失败");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"更新Bot失败: {ex.Message}");
+        }
+    }
+
+    //删除Bot
+    private async Task RemoveBot(Bot bot)
+    {
+        try
+        {
+            var response = await Http.PostAsJsonAsync(
+                "http://localhost:5081/api/bot/remove",
+                new
+                {
+                    id = bot.Id,
+                    userId = UserState.Value.Id,
+                    botName = bot.BotName,
+                    botDescription = bot.BotDescription,
+                    code = bot.Code,
+                    Rating = bot.Rating
+                }
+            );
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine($"删除Bot成功");
+                await JSRuntime.InvokeVoidAsync("closeModal", $"remove-bot-modal-{bot.Id}");
+                //关闭模态框
+                await JSRuntime.InvokeVoidAsync("alert", "删除Bot成功!");
+                await RefreshBots();
+                StateHasChanged();
+            }
+            else
+            {
+                Console.WriteLine($"删除Bot失败");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"删除Bot失败: {ex.Message}");
+        }
+    }
+
+    // 排序功能
+    private void DefaultSort()
+    {
+        if (DefaultSortColor == "gray")
+        {
+            DefaultSortColor = "black";
+            RatingSortColor = "gray";
+            UpColor = "gray";
+            DownColor = "gray";
+        }
+        SortedBots = Bots.ToList();
+    }
+    
+    private void RatingSort()
+    {
+        if (DefaultSortColor == "black")
+        {
+            RatingSortColor = "black";
+            UpColor = "black";
+            DefaultSortColor = "gray";
+        }
+        else
+        {
+            (UpColor, DownColor) = (DownColor, UpColor);
+        }
+        
+        SortedBots = UpColor == "black" 
+            ? Bots.OrderByDescending(b => b.Rating).ToList()
+            : Bots.OrderBy(b => b.Rating).ToList();
+    }
+}
+
+<style>
+    div.error-message {
+        color: red;
+    }
+    
+    .sort:hover {
+        cursor: pointer;
+        user-select: none;
+    }
+    
+    .change-signature:hover {
+        color: blue;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    /* ======== 容器修改：增加高度 ======== */
+    .login-container {
+        background: rgba(255, 255, 255, 0);
+        backdrop-filter: blur(8px);
+        border-radius: 16px;
+        /* 增加高度和垂直间距 */
+        padding: 3rem 2.5rem;
+        min-height: 380px; /* 增加高度 */
+        max-width: 1680px;
+        margin: 10px auto;
+        /* 内部空间优化 */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.5); /* 阴影扩大40% */
+        border: 1px solid rgba(255,255,255,0.3); /* 发光白边提升精致感 */
+    }
+
+    /* ======== 保留亮眼背景 ======== */
+    .login-background {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        bottom: 0;
+        left: 250px;
+        z-index: -1;
+        overflow: hidden;
+    }
+
+    .bg-deco {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(50px);
+        opacity: 0.4; /* 更强烈的色彩 */
+        mix-blend-mode: overlay;
+    }
+
+    .bg-element-1 {
+        top: 20%;
+        left: 15%;
+        width: 420px;
+        height: 420px;
+        background: linear-gradient(135deg, #5e2ced 0%, #2871fa 100%);
+        animation: pulse 8s infinite alternate;
+    }
+
+    .bg-element-2 {
+        top: 65%;
+        left: 65%;
+        width: 520px;
+        height: 520px;
+        background: linear-gradient(45deg, #ff5733 0%, #ffc300 100%);
+        animation: pulse 10s infinite alternate;
+    }
+
+    .bg-element-3 {
+        top: 25%;
+        left: 70%;
+        width: 380px;
+        height: 380px;
+        background: linear-gradient(225deg, #00e0b0 0%, #00a8ff 100%);
+        animation: pulse 8s infinite alternate;
+    }
+
+    @@keyframes pulse {
+        0% {
+            transform: scale(0.5);
+            filter: blur(50px);
+        }
+
+        50% {
+            transform: scale(1.5);
+            filter: blur(30px);
+        }
+
+        100% {
+            transform: scale(0.5);
+            filter: blur(50px);
+        }
+    }
+</style>
+<script>
+    window.closeModal = (modalId) => {
+        var modal = document.getElementById(modalId);
+        if (modal) {
+            var modalInstance = bootstrap.Modal.getInstance(modal);
+            if (modalInstance) {
+                modalInstance.hide();
+            } else {
+                // 如果没有现有实例，创建一个新的并隐藏
+                var newModalInstance = new bootstrap.Modal(modal);
+                newModalInstance.hide();
+            }
+        }
+    };
+</script>

@@ -1,0 +1,202 @@
+﻿@page "/login"
+@using Fluxor
+@using System.ComponentModel.DataAnnotations;
+@using Store
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JsRuntime
+@inject IDispatcher Dispatcher
+
+
+<div class="login-container">
+    <div class="row justify-content-md-center">
+        <div class="col-12 col-md-6 col-lg-4">
+            <EditForm Model="this" OnValidSubmit="HandleLogin">
+                <DataAnnotationsValidator /> @* 启用数据注解验证 [6,7](@ref) *@
+                <div class="mb-3">
+                    <label for="username" class="form-label">用户名</label>
+                    <InputText @bind-Value="Username" class="form-control" id="username" placeholder="请输入用户名" />
+                    <ValidationMessage For="() => Username" /> @* 验证消息 [6](@ref) *@
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">密码</label>
+                    <InputText type="password" @bind-Value="Password" class="form-control" id="password" placeholder="请输入密码" />
+                    <ValidationMessage For="() => Password" /> @* 验证消息 [6](@ref) *@
+                </div>
+
+                @if (!string.IsNullOrEmpty(ErrorMessage))
+                {
+                    <div class="alert alert-danger">@ErrorMessage</div>
+                }
+
+                <button type="submit" class="btn btn-primary w-100">登录</button>
+                <div class="mt-3" style="color: red;">
+                    没有账号？   
+                    <a href="/register" style="text-decoration: underline;"> 前往注册</a>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+<!-- 在登录容器后添加背景元素 -->
+<div class="login-background">
+    <!-- 背景装饰元素1: 几何图案 -->
+    <div class="bg-deco bg-element-1"></div>
+
+    <!-- 背景装饰元素2: 柔和光晕 -->
+    <div class="bg-deco bg-element-2"></div>
+
+    <!-- 背景装饰元素3: 纹理叠加 -->
+    <div class="bg-deco bg-element-3"></div>
+</div>
+
+@code {
+    [Required(ErrorMessage = "用户名不能为空")]
+    public string Username { get; set; } = "";
+
+    [Required(ErrorMessage = "密码不能为空")]
+    [MinLength(6, ErrorMessage = "密码至少需要6个字符")]
+    public string Password { get; set; } = "";
+
+    public string ErrorMessage { get; set; } = "";
+   
+    private void HandleLogin()  // 访问后端接口，获得jwt，获得用户信息，并记录在store和localstorage里
+    {
+        ErrorMessage = "";
+        try
+        {
+            Dispatcher.Dispatch(new LoginAction
+            (
+                Username,
+                Password,
+                OnLoginSuccess,
+                OnLoginError
+            ));
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"登录失败: {ex.Message}";
+        }
+    }
+    private async void OnLoginSuccess()
+    {
+        ErrorMessage = "登陆成功，2秒后跳转首页";
+        StateHasChanged();
+        await Task.Delay(2000); // 3000毫秒 = 3秒
+        NavigationManager.NavigateTo("/"); // 跳转到登录页
+
+    }
+    private void OnLoginError()
+    {
+        ErrorMessage = "用户名或密码错误";
+        StateHasChanged();
+    }
+}
+<style>
+    /* ======== 容器修改：增加高度 ======== */
+    .login-container {
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(8px);
+        border-radius: 16px;
+        /* 增加高度和垂直间距 */
+        padding: 3rem 2.5rem;
+        min-height: 420px; /* 增加高度 */
+        max-width: 720px;
+        margin: 50px auto;
+        /* 内部空间优化 */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.2); /* 阴影扩大40% */
+        border: 1px solid rgba(255,255,255,0.3); /* 发光白边提升精致感 */
+    }
+
+    /* ======== 保留亮眼背景 ======== */
+    .login-background {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        bottom: 0;
+        left: 250px;
+        z-index: -1;
+        overflow: hidden;
+    }
+
+    .bg-deco {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(50px);
+        opacity: 0.4; /* 更强烈的色彩 */
+        mix-blend-mode: overlay;
+    }
+
+    .bg-element-1 {
+        top: 20%;
+        left: 15%;
+        width: 420px;
+        height: 420px;
+        background: linear-gradient(135deg, #5e2ced 0%, #2871fa 100%);
+        animation: pulse 6s infinite alternate;
+    }
+
+    .bg-element-2 {
+        top: 65%;
+        left: 65%;
+        width: 520px;
+        height: 520px;
+        background: linear-gradient(45deg, #ff5733 0%, #ffc300 100%);
+        animation: pulse 10s infinite alternate;
+    }
+
+    .bg-element-3 {
+        top: 25%;
+        left: 70%;
+        width: 380px;
+        height: 380px;
+        background: linear-gradient(225deg, #00e0b0 0%, #00a8ff 100%);
+        animation: pulse 8s infinite alternate;
+    }
+
+    @@keyframes pulse {
+        0% {
+            transform: scale(1);
+            filter: blur(50px);
+        }
+
+        50% {
+            transform: scale(1.5);
+            filter: blur(30px);
+        }
+
+        100% {
+            transform: scale(1);
+            filter: blur(50px);
+        }
+    }
+
+    /* ======== 表单元素间距优化 ======== */
+    .form-group {
+        margin-bottom: 1.8rem; /* 增加元素间距 */
+    }
+
+    /* ======== 输入框样式优化 ======== */
+    .form-control {
+        padding: 0.9rem 1rem; /* 增加内边距 */
+        font-size: 1.05rem; /* 稍大字体 */
+    }
+
+    /* ======== 按钮样式优化 ======== */
+    .btn-primary {
+        padding: 0.9rem; /* 增加高度 */
+        margin-top: 1rem; /* 增加上方间距 */
+    }
+
+    /* ======== 注册提示位置优化 ======== */
+    .register-prompt {
+        margin-top: 1.8rem; /* 下移位置 */
+    }
+
+    /* ======== 标题位置优化 ======== */
+    .login-container h3 {
+        margin-bottom: 1.8rem; /* 增加标题下方间距 */
+    }
+</style>

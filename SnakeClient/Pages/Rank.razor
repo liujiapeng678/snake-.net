@@ -1,0 +1,247 @@
+﻿@page "/rank"
+@attribute [Authorize]
+@using Microsoft.AspNetCore.Authorization
+@using System.Net.Http.Json
+@using System.Text.Json.Serialization
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+
+<div class="login-container">
+    <div class="content-field">
+        <div class="table-container">
+            <table class="table table-striped">
+                <thead class="table-header">
+                    <tr>
+                        <th class="text-left">排名</th>
+                        <th class="text-left">bot名称</th>
+                        <th class="text-left">创建者</th>
+                        <th class="text-left">Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Bots != null)
+                    {
+                        @for (int i = 0; i < Bots.Count; i++)
+                        {
+                            var bot = Bots[i];
+                            var index = i;
+                            <tr>
+                                <td>
+                                    @(index + 1)
+                                    @if (index < 3)
+                                    {
+                                        <i class="medal-icon">🏅</i>
+                                    }
+                                </td>
+                                <td>@bot.BotName</td>
+                                <td>
+                                    <img src="@bot.BotOwnerPhoto" alt="玩家头像" class="ranklist-user-photo" />
+                                    &nbsp;
+                                    <span class="ranklist-user-username">@bot.BotOwner</span>
+                                </td>
+                                <td>@bot.Rating</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="login-background">
+    <!-- 背景装饰元素1: 几何图案 -->
+    <div class="bg-deco bg-element-1"></div>
+
+    <!-- 背景装饰元素2: 柔和光晕 -->
+    <div class="bg-deco bg-element-2"></div>
+
+    <!-- 背景装饰元素3: 纹理叠加 -->
+    <div class="bg-deco bg-element-3"></div>
+</div>
+
+@code {
+    // Bot模型类，后端传来的排行榜bots列表里的bot
+    private class Bot
+    {
+        public string BotName { get; set; } = "";
+        public string BotOwner { get; set; } = "";
+        public string BotOwnerPhoto { get; set; } = "";
+        public int Rating { get; set; }
+    }
+    private List<Bot> Bots { get; set; } = new List<Bot>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetBotsRank();
+    }
+    private async Task GetBotsRank()
+    {
+        try
+        {
+            Bots.Clear();
+            Bots = await Http.GetFromJsonAsync<List<Bot>>($"http://localhost:5081/api/bot/getrank");
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error fetching data: {ex.Message}");
+        }
+    }
+}
+
+<style>
+    .content-field {
+        width: 100%;
+        padding: 16px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        background-color: white;
+    }
+
+    .table-container {
+        height: 810px;
+        overflow-y: auto;
+    }
+
+    .table-header {
+        position: sticky;
+        top: 0;
+        background-color: #f5f5f5;
+        z-index: 1;
+    }
+
+    .ranklist-user-photo {
+        width: 2vw;
+        border-radius: 50%;
+        min-width: 32px;
+        height: auto;
+    }
+
+    .ranklist-user-username {
+        font-weight: normal;
+        font-size: larger;
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .ranklist-user-username:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+        height: 2px;
+    }
+
+    .ranklist-user-username::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #000000;
+        transform-origin: bottom right;
+        transition: transform 0.1s ease-out;
+    }
+
+    .medal-icon {
+        margin-left: 5px;
+        font-size: 1.2em;
+    }
+
+    .pagination {
+        margin: 0;
+    }
+
+    .page-link {
+        cursor: pointer;
+    }
+
+    .page-item.disabled .page-link {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    /* ======== 容器修改：增加高度 ======== */
+    .login-container {
+        background: rgba(255, 255, 255, 0);
+        backdrop-filter: blur(8px);
+        border-radius: 16px;
+        /* 增加高度和垂直间距 */
+        padding: 3rem 2.5rem;
+        min-height: 380px; /* 增加高度 */
+        max-width: 1680px;
+        margin: 10px auto;
+        /* 内部空间优化 */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.5); /* 阴影扩大40% */
+        border: 1px solid rgba(255,255,255,0.3); /* 发光白边提升精致感 */
+    }
+
+    /* ======== 保留亮眼背景 ======== */
+    .login-background {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        bottom: 0;
+        left: 250px;
+        z-index: -1;
+        overflow: hidden;
+    }
+
+    .bg-deco {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(50px);
+        opacity: 0.4; /* 更强烈的色彩 */
+        mix-blend-mode: overlay;
+    }
+
+    .bg-element-1 {
+        top: 20%;
+        left: 15%;
+        width: 420px;
+        height: 420px;
+        background: linear-gradient(135deg, #5e2ced 0%, #2871fa 100%);
+        animation: pulse 8s infinite alternate;
+    }
+
+    .bg-element-2 {
+        top: 65%;
+        left: 65%;
+        width: 520px;
+        height: 520px;
+        background: linear-gradient(45deg, #ff5733 0%, #ffc300 100%);
+        animation: pulse 10s infinite alternate;
+    }
+
+    .bg-element-3 {
+        top: 25%;
+        left: 70%;
+        width: 380px;
+        height: 380px;
+        background: linear-gradient(225deg, #00e0b0 0%, #00a8ff 100%);
+        animation: pulse 8s infinite alternate;
+    }
+
+    @@keyframes pulse {
+        0% {
+            transform: scale(0.5);
+            filter: blur(50px);
+        }
+
+        50% {
+            transform: scale(1.5);
+            filter: blur(30px);
+        }
+
+        100% {
+            transform: scale(0.5);
+            filter: blur(50px);
+        }
+    }
+
+</style>

@@ -1,0 +1,125 @@
+﻿@inherits FluxorComponent
+@using System.Text.Json
+@using Fluxor
+@using SnakeClient.Store
+@inject IJSRuntime JSRuntime
+@inject IState<PkState> PkState
+@inject IDispatcher Dispatcher
+
+<div class="result-board">
+    <div class="result-board-text">
+        @if (PkState.Value.Loser == "all")
+        {
+            <text>平局!</text>
+        }
+        else if (PkState.Value.Loser == "A" && PkState.Value.Me == "红")
+        {
+            <text>获胜!</text>
+        }
+        else if (PkState.Value.Loser == "B" && PkState.Value.Me == "蓝")
+        {
+            <text>获胜!</text>
+        }
+        else
+        {
+            <text>失败!</text>
+        }
+    </div>
+    <div class="result-board-btn">
+        <button class="btn-large" @onclick="FireAgain">
+            再来一局!
+        </button>
+        <button class="btn-large" @onclick="GoBack">
+            返回
+        </button>
+    </div>
+</div>
+
+@code {
+    private async Task FireAgain()
+    {
+        Dispatcher.Dispatch(new UpdateGoToAction(false));
+        // 更新游戏状态
+        PkState.Value.Loser = "none";
+        Dispatcher.Dispatch(new UpdateOpponentAction("我的对手", "https://cdn.acwing.com/media/article/image/2022/08/09/1_1db2488f17-anonymous.png"));
+        Dispatcher.Dispatch(new UpdateStatusAction("匹配中(再次点击取消)"));
+        StateHasChanged();
+
+        // 发送WebSocket消息
+        await PkState.Value.Socket.SendAsync(new
+        {
+            @event = "start-match",
+            botId = PkState.Value.SelectedBot,
+            rating = PkState.Value.SelectedBotRating,
+        });
+    }
+
+    private void GoBack()
+    {
+        Dispatcher.Dispatch(new UpdateGoToAction(false));
+        // 更新游戏状态
+        PkState.Value.Loser = "none";
+        Dispatcher.Dispatch(new UpdateOpponentAction("我的对手", "https://cdn.acwing.com/media/article/image/2022/08/09/1_1db2488f17-anonymous.png"));
+        Dispatcher.Dispatch(new UpdateStatusAction("开始匹配"));
+        StateHasChanged();
+    }
+}
+
+<style>
+    .result-board {
+        height: 30vh;
+        width: 30vw;
+        background-color: rgba(50, 50, 50, 0.5);
+        position: absolute;
+        top: 30vh;
+        left: 35vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .result-board-text {
+        text-align: center;
+        color: white;
+        font-size: 50px;
+        font-weight: 600;
+        font-style: italic;
+        padding-top: 5vh;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .result-board-btn {
+        text-align: center;
+        padding-top: 7vh;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .btn-large {
+        background-color: #1976d2;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+        transition: all 0.3s ease;
+    }
+
+        .btn-large:hover {
+            background-color: #1565c0;
+            box-shadow: 0px 12px 20px rgba(0,0,0,0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-large:active {
+            transform: translateY(0px);
+            box-shadow: 0px 6px 12px rgba(0,0,0,0.3);
+        }
+</style>

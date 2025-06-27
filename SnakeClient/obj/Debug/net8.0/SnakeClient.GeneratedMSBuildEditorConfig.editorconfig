@@ -1,0 +1,85 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = SnakeClient
+build_property.RootNamespace = SnakeClient
+build_property.ProjectDir = D:\Snake\SnakeClient\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = false
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\Snake\SnakeClient
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
+
+[D:/Snake/SnakeClient/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Snake/SnakeClient/Layout/AceEditor.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XEFjZUVkaXRvci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Snake/SnakeClient/Layout/GameMapLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XEdhbWVNYXBMYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Snake/SnakeClient/Layout/MatchGround.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1hdGNoR3JvdW5kLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Snake/SnakeClient/Layout/PlayGround.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XFBsYXlHcm91bmQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Snake/SnakeClient/Layout/ResultBoard.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XFJlc3VsdEJvYXJkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Snake/SnakeClient/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Snake/SnakeClient/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Snake/SnakeClient/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Snake/SnakeClient/Pages/Profile.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZmlsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Snake/SnakeClient/Pages/Rank.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmFuay5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Snake/SnakeClient/Pages/Register.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Snake/SnakeClient/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Snake/SnakeClient/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-v8ge33558u
+
+[D:/Snake/SnakeClient/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-o0ihlxc8rx

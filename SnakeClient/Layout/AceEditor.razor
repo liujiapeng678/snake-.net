@@ -1,0 +1,51 @@
+﻿@inject IJSRuntime JSRuntime
+
+<div @ref="EditorElement" style="height: @Height; width: 100%;"></div>
+
+@code {
+    [Parameter] public string Value { get; set; } = "";
+    [Parameter] public EventCallback<string> ValueChanged { get; set; }
+    [Parameter] public string Theme { get; set; } = "textmate";
+    [Parameter] public string Language { get; set; } = "c_cpp";
+    [Parameter] public string Height { get; set; } = "300px";
+
+    private ElementReference EditorElement;
+    public required IJSObjectReference _aceModule;
+    public required IJSObjectReference _aceEditor;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _aceModule = await JSRuntime.InvokeAsync<IJSObjectReference>(
+                "import", "https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js");
+
+            _aceEditor = await _aceModule.InvokeAsync<IJSObjectReference>(
+                "ace.edit", EditorElement);
+
+            await _aceEditor.InvokeVoidAsync("setTheme", $"ace/theme/{Theme}");
+            await _aceEditor.InvokeVoidAsync("session.setMode", $"ace/mode/{Language}");
+            await _aceEditor.InvokeVoidAsync("setValue", Value);
+
+            await _aceEditor.InvokeVoidAsync("on", "change",
+                DotNetObjectReference.Create(this));
+        }
+    }
+
+    [JSInvokable]
+    public async Task UpdateValue()
+    {
+        if (_aceEditor != null)
+        {
+            var content = await _aceEditor.InvokeAsync<string>("getValue");
+            Value = content;
+            await ValueChanged.InvokeAsync(Value);
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_aceEditor != null) await _aceEditor.DisposeAsync();
+        if (_aceModule != null) await _aceModule.DisposeAsync();
+    }
+}
