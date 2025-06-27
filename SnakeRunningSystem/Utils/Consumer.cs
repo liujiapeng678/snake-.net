@@ -73,7 +73,7 @@ namespace SnakeRunningSystem.Utils
             // 添加必要的using语句和修改类名
             string modifiedCode = $@"
 using System;
-using BotRunningSystem.Interfaces;
+using SnakeRunningSystem.Utils;
 
 namespace SnakeRunningSystem.Utils
 {{

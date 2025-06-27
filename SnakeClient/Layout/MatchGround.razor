@@ -1,4 +1,4 @@
-﻿
+﻿@inherits FluxorComponent
 @using System.Text.Json
 @using Fluxor
 @using SnakeClient.Services
@@ -117,6 +117,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        await base.OnInitializedAsync(); // 必须调用基类方法
         await RefreshBots();
     }
     private async Task RefreshBots()

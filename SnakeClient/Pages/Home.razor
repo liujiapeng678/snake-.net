@@ -1,5 +1,6 @@
 ﻿@page "/"
 @attribute [Authorize]
+@inherits FluxorComponent
 @using Microsoft.AspNetCore.Authorization
 @using System.Net.WebSockets
 @using System.Text
@@ -48,6 +49,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        await base.OnInitializedAsync(); // 必须调用基类方法
         await ConnectWebSocket();
     }
     // 在你的组件或服务中添加这个方法

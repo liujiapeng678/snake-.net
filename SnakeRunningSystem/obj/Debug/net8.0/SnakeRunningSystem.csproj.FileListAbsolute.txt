@@ -59,3 +59,4 @@ D:\Snake\SnakeRunningSystem\obj\Debug\net8.0\refint\SnakeRunningSystem.dll
 D:\Snake\SnakeRunningSystem\obj\Debug\net8.0\SnakeRunningSystem.pdb
 D:\Snake\SnakeRunningSystem\obj\Debug\net8.0\SnakeRunningSystem.genruntimeconfig.cache
 D:\Snake\SnakeRunningSystem\obj\Debug\net8.0\ref\SnakeRunningSystem.dll
+D:\Snake\SnakeRunningSystem\obj\Debug\net8.0\SnakeRunningSystem.sourcelink.json

@@ -31,7 +31,7 @@ namespace SnakeServer.Models
         private string status = "playing";  // playing finished
         private string loser = ""; // all, A, B
 
-        public Game(int rows, int cols, int innerWallsCount, int aId, Bots? aBot, int bId, Bots? bBot, int aRating, int bRating, HttpClient httpClient, IConfiguration config)
+        public Game(int rows, int cols, int innerWallsCount, int aId, Bots? aBot, int bId, Bots? bBot, int aRating, int bRating, IConfiguration config)
         {
             this.rows = rows;
             this.cols = cols;
@@ -53,7 +53,7 @@ namespace SnakeServer.Models
 
             PlayerA = new Player(aId, aBotId, aRating, aBotCode, rows - 2, 1, new List<int>());
             PlayerB = new Player(bId, bBotId, bRating, bBotCode, 1, cols - 2, new List<int>());
-            _httpClient = httpClient;
+            _httpClient = new HttpClient();
             _config = config;
         }
 
@@ -188,18 +188,30 @@ namespace SnakeServer.Models
         private async Task SendBotCodeAsync(Player player)
         {
             if (player.BotId <= -1) return;
+            try
+            {
+                //Console.WriteLine("将要发送加入bot请求");
 
-            var response = await _httpClient.PostAsJsonAsync(
-                "http://localhost:5273/api/bot/add",
-                new
-                {
-                    userId = player.Id,
-                    botId = player.BotId,
-                    botCode = player.BotCode,
-                    input = GetInput(player)
-                }
-            );
+                var response = await _httpClient.PostAsJsonAsync(
+                    "http://localhost:5273/api/bot/add",
+                    new
+                    {
+                        userId = player.Id,
+                        botId = player.BotId,
+                        botCode = player.BotCode,
+                        input = GetInput(player)
+                    }
+                );
 
+                //Console.WriteLine($"HTTP状态码: {response.StatusCode}");
+                //Console.WriteLine($"是否成功: {response.IsSuccessStatusCode}");
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine($"HTTP请求异常: {ex.Message}");
+                //Console.WriteLine($"异常类型: {ex.GetType().Name}");
+                //Console.WriteLine($"完整异常: {ex}");
+            }
         }
         private async Task SendAllMessage(object message)
         {

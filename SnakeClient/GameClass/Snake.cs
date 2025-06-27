@@ -75,7 +75,7 @@ namespace SnakeClient.GameClass
                 UpdateMove();
             }
             await RenderAsync();
-            Console.WriteLine(Cells.Count.ToString());
+            //Console.WriteLine(Cells.Count.ToString());
         }
 
         private void UpdateMove()

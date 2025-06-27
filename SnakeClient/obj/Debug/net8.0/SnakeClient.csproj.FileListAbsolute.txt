@@ -1049,6 +1049,7 @@ D:\Snake\SnakeClient\obj\Debug\net8.0\webcil\Blazor.Extensions.Canvas.JS.wasm
 D:\Snake\SnakeClient\obj\Debug\net8.0\webcil\Blazor.Extensions.Canvas.wasm
 D:\Snake\SnakeClient\obj\Debug\net8.0\compressed\r994ihk9bj-iokb7a5y98.gz
 D:\Snake\SnakeClient\obj\Debug\net8.0\compressed\rxut3e70ko-45bjdsigtk.gz
-D:\Snake\SnakeClient\obj\Debug\net8.0\compressed\sybxy9dc3d-lrx262bb68.gz
-D:\Snake\SnakeClient\obj\Debug\net8.0\compressed\gmyw51lpi5-8e4yjflboh.gz
-D:\Snake\SnakeClient\obj\Debug\net8.0\compressed\s2eq1h83bu-ivbzgfawaz.gz
+D:\Snake\SnakeClient\obj\Debug\net8.0\SnakeClient.sourcelink.json
+D:\Snake\SnakeClient\obj\Debug\net8.0\compressed\sybxy9dc3d-wroqxkplz2.gz
+D:\Snake\SnakeClient\obj\Debug\net8.0\compressed\gmyw51lpi5-mabps5lh4j.gz
+D:\Snake\SnakeClient\obj\Debug\net8.0\compressed\s2eq1h83bu-co6pl62lt5.gz

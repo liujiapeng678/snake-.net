@@ -11,12 +11,10 @@ namespace SnakeServer.Controllers
     public class GameController : ControllerBase
     {
         private readonly IConfiguration _config;
-        private readonly HttpClient _httpClient;
 
-        public GameController(IConfiguration config, HttpClient httpClient)
+        public GameController(IConfiguration config)
         {
             _config = config;
-            _httpClient = httpClient;
         }
         public class Players
         {
@@ -38,7 +36,7 @@ namespace SnakeServer.Controllers
         [HttpPost("start")]
         public IActionResult Start([FromBody] Players players)
         {
-            WebSocketMiddleware.StartGame(players.aId, players.bId, players.aBotId, players.bBotId, players.aRating, players.bRating, _config, _httpClient);
+            WebSocketMiddleware.StartGame(players.aId, players.bId, players.aBotId, players.bBotId, players.aRating, players.bRating, _config);
             return Ok();
         }
 

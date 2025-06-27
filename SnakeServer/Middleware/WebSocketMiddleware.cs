@@ -176,7 +176,7 @@ namespace SnakeServer.Middleware
                 if (WebSocketMiddleware.game.PlayerB.BotId <= -1) WebSocketMiddleware.game.SetNextStepB(d);
             }
         }
-        public static async Task StartGame(int aId, int bId, int aBotId, int bBotId, int aRating, int bRating, IConfiguration _config, HttpClient _httpClient)
+        public static async Task StartGame(int aId, int bId, int aBotId, int bBotId, int aRating, int bRating, IConfiguration _config)
         {
             
             Users? a = null;
@@ -270,7 +270,7 @@ namespace SnakeServer.Middleware
                 }
             }
             // 创建游戏实例
-            Game g = new Game(Constants.Constants.ROWS, Constants.Constants.COLS, Constants.Constants.INNER_WALLS_COUNT, aId, aBot, bId, bBot, aRating, bRating, _httpClient, _config); // 根据实际需要调整参数
+            Game g = new Game(Constants.Constants.ROWS, Constants.Constants.COLS, Constants.Constants.INNER_WALLS_COUNT, aId, aBot, bId, bBot, aRating, bRating, _config); // 根据实际需要调整参数
             g.CreateGameMap();
             game = g;
             //if (_connections[aId] != null)

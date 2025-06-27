@@ -47,8 +47,8 @@ namespace SnakeRunningSystem.Utils
 
             consumerThread.Start();
 
-            // 等待最多2秒
-            if (!consumerThread.Join(2000))
+            // 等待最多20秒
+            if (!consumerThread.Join(20000))
             {
                 // 超时了，中断线程
                 consumerThread.Interrupt();

@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\Snake\\SnakeClient\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B73670FE-5EFB-478A-8D19-63C8C05FA856}|SnakeClient.csproj|d:\\snake\\snakeclient\\gameclass\\snake.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B73670FE-5EFB-478A-8D19-63C8C05FA856}|SnakeClient.csproj|solutionrelative:gameclass\\snake.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B73670FE-5EFB-478A-8D19-63C8C05FA856}|SnakeClient.csproj|d:\\snake\\snakeclient\\layout\\matchground.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B73670FE-5EFB-478A-8D19-63C8C05FA856}|SnakeClient.csproj|solutionrelative:layout\\matchground.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -21,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B73670FE-5EFB-478A-8D19-63C8C05FA856}|SnakeClient.csproj|d:\\snake\\snakeclient\\pages\\rank.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B73670FE-5EFB-478A-8D19-63C8C05FA856}|SnakeClient.csproj|solutionrelative:pages\\rank.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B73670FE-5EFB-478A-8D19-63C8C05FA856}|SnakeClient.csproj|d:\\snake\\snakeclient\\gameclass\\snake.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B73670FE-5EFB-478A-8D19-63C8C05FA856}|SnakeClient.csproj|solutionrelative:gameclass\\snake.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B73670FE-5EFB-478A-8D19-63C8C05FA856}|SnakeClient.csproj|d:\\snake\\snakeclient\\layout\\resultboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -115,25 +115,11 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEwAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2025-06-25T13:21:01.819Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Profile.razor",
-              "DocumentMoniker": "D:\\Snake\\SnakeClient\\Pages\\Profile.razor",
-              "RelativeDocumentMoniker": "Pages\\Profile.razor",
-              "ToolTip": "D:\\Snake\\SnakeClient\\Pages\\Profile.razor",
-              "RelativeToolTip": "Pages\\Profile.razor",
-              "ViewState": "AgIAAGwBAAAAAAAAAAAAAOIAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-27T03:46:56.657Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "Counter.razor",
               "DocumentMoniker": "D:\\Snake\\SnakeClient\\Pages\\Counter.razor",
               "RelativeDocumentMoniker": "Pages\\Counter.razor",
@@ -141,8 +127,7 @@
               "RelativeToolTip": "Pages\\Counter.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAE8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-27T03:18:29Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-27T03:18:29Z"
             },
             {
               "$type": "Document",
@@ -154,8 +139,7 @@
               "RelativeToolTip": "Store\\PkAction.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-27T02:37:54.094Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-27T02:37:54.094Z"
             },
             {
               "$type": "Document",
@@ -167,8 +151,7 @@
               "RelativeToolTip": "Store\\UserActions.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-27T02:37:41.562Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-27T02:37:41.562Z"
             },
             {
               "$type": "Document",
@@ -180,8 +163,7 @@
               "RelativeToolTip": "GameClass\\GameLoop.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAAwCMAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T14:38:54.371Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-24T14:38:54.371Z"
             },
             {
               "$type": "Document",
@@ -193,12 +175,11 @@
               "RelativeToolTip": "Store\\PkState.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABgAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T13:28:11.771Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T13:28:11.771Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Home.razor",
               "DocumentMoniker": "D:\\Snake\\SnakeClient\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "Pages\\Home.razor",
@@ -206,25 +187,49 @@
               "RelativeToolTip": "Pages\\Home.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-16T14:32:47.664Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-16T14:32:47.664Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MatchGround.razor",
               "DocumentMoniker": "D:\\Snake\\SnakeClient\\Layout\\MatchGround.razor",
               "RelativeDocumentMoniker": "Layout\\MatchGround.razor",
               "ToolTip": "D:\\Snake\\SnakeClient\\Layout\\MatchGround.razor",
               "RelativeToolTip": "Layout\\MatchGround.razor",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAAAUAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAAAAUAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-06-23T14:35:32.735Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Snake.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeClient\\GameClass\\Snake.cs",
+              "RelativeDocumentMoniker": "GameClass\\Snake.cs",
+              "ToolTip": "D:\\Snake\\SnakeClient\\GameClass\\Snake.cs",
+              "RelativeToolTip": "GameClass\\Snake.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAqwD8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T16:15:30.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "Profile.razor",
+              "DocumentMoniker": "D:\\Snake\\SnakeClient\\Pages\\Profile.razor",
+              "RelativeDocumentMoniker": "Pages\\Profile.razor",
+              "ToolTip": "D:\\Snake\\SnakeClient\\Pages\\Profile.razor",
+              "RelativeToolTip": "Pages\\Profile.razor",
+              "ViewState": "AgIAAGwBAAAAAAAAAAAAAOIAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-27T03:46:56.657Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Rank.razor",
               "DocumentMoniker": "D:\\Snake\\SnakeClient\\Pages\\Rank.razor",
               "RelativeDocumentMoniker": "Pages\\Rank.razor",
@@ -232,8 +237,7 @@
               "RelativeToolTip": "Pages\\Rank.razor",
               "ViewState": "AgIAAFUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-27T04:38:11.677Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-27T04:38:11.677Z"
             },
             {
               "$type": "Document",
@@ -245,8 +249,7 @@
               "RelativeToolTip": "Store\\PkReducer.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAQwEUAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-27T02:38:04.377Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-27T02:38:04.377Z"
             },
             {
               "$type": "Document",
@@ -258,21 +261,7 @@
               "RelativeToolTip": "GameClass\\Cell.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-26T16:59:29.729Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Snake.cs",
-              "DocumentMoniker": "D:\\Snake\\SnakeClient\\GameClass\\Snake.cs",
-              "RelativeDocumentMoniker": "GameClass\\Snake.cs",
-              "ToolTip": "D:\\Snake\\SnakeClient\\GameClass\\Snake.cs",
-              "RelativeToolTip": "GameClass\\Snake.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAoAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T16:15:30.143Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-26T16:59:29.729Z"
             },
             {
               "$type": "Document",
@@ -284,8 +273,7 @@
               "RelativeToolTip": "Layout\\ResultBoard.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-27T01:48:35.985Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-27T01:48:35.985Z"
             },
             {
               "$type": "Document",
@@ -297,8 +285,7 @@
               "RelativeToolTip": "Store\\UserReducer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-27T02:38:08.432Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-27T02:38:08.432Z"
             },
             {
               "$type": "Document",
@@ -310,8 +297,7 @@
               "RelativeToolTip": "Store\\UserState.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-27T02:40:17.06Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-27T02:40:17.06Z"
             },
             {
               "$type": "Document",
@@ -323,8 +309,7 @@
               "RelativeToolTip": "_Imports.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-27T02:34:32.836Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-27T02:34:32.836Z"
             },
             {
               "$type": "Document",
@@ -336,8 +321,7 @@
               "RelativeToolTip": "Layout\\GameMapLayout.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-23T13:56:40.648Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-23T13:56:40.648Z"
             },
             {
               "$type": "Document",
@@ -349,8 +333,7 @@
               "RelativeToolTip": "GameClass\\GameMap.cs",
               "ViewState": "AgIAADkAAAAAAAAAAAAiwEUAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T15:58:34.191Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-24T15:58:34.191Z"
             },
             {
               "$type": "Document",
@@ -362,8 +345,7 @@
               "RelativeToolTip": "GameClass\\Wall.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-26T16:59:32.476Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-26T16:59:32.476Z"
             },
             {
               "$type": "Document",
@@ -375,8 +357,7 @@
               "RelativeToolTip": "Layout\\PlayGround.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-25T12:23:44.393Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T12:23:44.393Z"
             },
             {
               "$type": "Document",
@@ -400,8 +381,7 @@
               "RelativeToolTip": "Services\\WebSocketService.cs",
               "ViewState": "AgIAACcAAAAAAAAAAAAYwHEAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T03:27:05.475Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T03:27:05.475Z"
             }
           ]
         }

@@ -55,3 +55,4 @@ D:\Snake\SnakeServer\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
 D:\Snake\SnakeServer\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
 D:\Snake\SnakeServer\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 D:\Snake\SnakeServer\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Snake\SnakeServer\obj\Debug\net8.0\SnakeServer.sourcelink.json

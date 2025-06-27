@@ -17,8 +17,20 @@ namespace SnakeRunningSystem.Controllers
         [HttpPost("add")]
         public IActionResult Add([FromBody] Bot bot)
         {
-            _pool.AddBot(bot.userId, bot.botId, bot.botCode, bot.input);
-            return Ok();
+            //Console.WriteLine("将要加入bot");
+            try
+            {
+                Console.WriteLine("将要加入bot");
+                _pool.AddBot(bot.userId, bot.botId, bot.botCode, bot.input);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"加入bot时出错: {ex.Message}");
+                return BadRequest(ex.Message);
+            }
+            //_pool.AddBot(bot.userId, bot.botId, bot.botCode, bot.input);
+            //return Ok();
         }
     }
 }

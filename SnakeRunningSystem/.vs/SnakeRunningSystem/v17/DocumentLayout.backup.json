@@ -11,6 +11,14 @@
       "RelativeMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|solutionrelative:utils\\consumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|d:\\snake\\snakerunningsystem\\controllers\\botcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|solutionrelative:controllers\\botcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|d:\\snake\\snakerunningsystem\\utils\\bot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|solutionrelative:utils\\bot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|d:\\snake\\snakerunningsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DF843F2C-E76B-496C-86B7-1B19BDD8DA66}|SnakeRunningSystem.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -22,11 +30,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Bot.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeRunningSystem\\Utils\\Bot.cs",
+              "RelativeDocumentMoniker": "Utils\\Bot.cs",
+              "ToolTip": "D:\\Snake\\SnakeRunningSystem\\Utils\\Bot.cs",
+              "RelativeToolTip": "Utils\\Bot.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T06:32:46.592Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "BotController.cs",
+              "DocumentMoniker": "D:\\Snake\\SnakeRunningSystem\\Controllers\\BotController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BotController.cs",
+              "ToolTip": "D:\\Snake\\SnakeRunningSystem\\Controllers\\BotController.cs",
+              "RelativeToolTip": "Controllers\\BotController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T06:25:56.88Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Snake\\SnakeRunningSystem\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -34,8 +68,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-26T04:00:48.923Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-26T04:00:48.923Z"
             },
             {
               "$type": "Document",
@@ -45,7 +78,7 @@
               "RelativeDocumentMoniker": "Utils\\Consumer.cs",
               "ToolTip": "D:\\Snake\\SnakeRunningSystem\\Utils\\Consumer.cs",
               "RelativeToolTip": "Utils\\Consumer.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAQwCkAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAgwEwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-26T03:58:32.179Z",
               "EditorCaption": ""
@@ -58,7 +91,7 @@
               "RelativeDocumentMoniker": "Utils\\BotPool.cs",
               "ToolTip": "D:\\Snake\\SnakeRunningSystem\\Utils\\BotPool.cs",
               "RelativeToolTip": "Utils\\BotPool.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwDAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-22T06:53:28.884Z",
               "EditorCaption": ""
